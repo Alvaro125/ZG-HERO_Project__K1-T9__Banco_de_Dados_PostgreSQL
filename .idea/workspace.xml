@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d787a77f-7c8b-43f3-b593-f7d84e8ebda1" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jpa-buddy.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/groovy/org/example/Main.groovy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/groovy/org/example/config/Database.groovy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/groovy/org/example/entity/AddressEntity.groovy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/groovy/org/example/entity/JobEntity.groovy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/groovy/org/example/entity/LegalPersonEntity.groovy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/groovy/org/example/entity/NaturalPersonEntity.groovy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/groovy/org/example/entity/PersonEntity.groovy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/groovy/org/example/entity/SkillEntity.groovy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/groovy/org/example/interfaces/IPerson.groovy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/groovy/org/example/services/JobsService.groovy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/groovy/org/example/services/LegalPersonService.groovy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/groovy/org/example/services/NaturalPersonService.groovy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/groovy/org/example/services/SkillService.groovy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/groovy/org/example/ui/JobsUI.groovy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/groovy/org/example/ui/LegalPersonUI.groovy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/groovy/org/example/ui/NaturalPersonUI.groovy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/groovy/org/example/ui/SkillsUI.groovy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/groovy/org/example/ui/Terminal.groovy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/groovy/config/DatabaseTest.groovy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/groovy/services/SkillServiceTest.groovy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/groovy/utils/DBTest.groovy" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="ZG-HERO_Project__K1-T9__Banco_de_Dados_PostgreSQL" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="ZG-HERO_Project__K1-T9__Banco_de_Dados_PostgreSQL" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="2e67MgcdwmaBE7w1VHifpXPM9vM" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Gradle.DatabaseTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.DatabaseTest.testConnectionClosed.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.DatabaseTest.testConnectionIsClosed.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.DatabaseTest.testConnectionIsValid.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.DatabaseTest.testConnectionNotNull.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.SkillServiceSpec.should add a skill.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.SkillServiceTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.SkillServiceTest.should add a skill successfully.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.SkillServiceTest.should add a skill.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.SkillServiceTest.should get a skill by id.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.SkillServiceTest.should list skills from the database.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.SkillServiceTest.should list skills.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.SkillServiceTest.should upgrade one skill per id.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.SkillServiceTest.test addSkill method.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.SkillServiceTest.test listSkills method.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.ZG-HERO_Project__K1-T9__Banco_de_Dados_PostgreSQL [:Main.main()].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/alvaro/Área de Trabalho/teagabank-backend-web&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/groovy/org/example" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.example.services" />
+      <recent name="org.example.ui" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.example.Main" />
+      <module name="ZG-HERO_Project__K1-T9__Banco_de_Dados_PostgreSQL.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SkillServiceTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--scan" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;services.SkillServiceTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="SkillServiceTest.should add a skill" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;services.SkillServiceTest.should add a skill&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="SkillServiceTest.should get a skill by id" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;services.SkillServiceTest.should get a skill by id&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="SkillServiceTest.should upgrade one skill per id" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;services.SkillServiceTest.should upgrade one skill per id&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Gradle.SkillServiceTest" />
+        <item itemvalue="Gradle.SkillServiceTest.should upgrade one skill per id" />
+        <item itemvalue="Gradle.SkillServiceTest.should get a skill by id" />
+        <item itemvalue="Gradle.SkillServiceTest.should add a skill" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-19.0.2-corretto-19.0.2-4caba194b151-6ca9ab15" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d787a77f-7c8b-43f3-b593-f7d84e8ebda1" name="Changes" comment="" />
+      <created>1711213130611</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1711213130611</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="true" />
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
