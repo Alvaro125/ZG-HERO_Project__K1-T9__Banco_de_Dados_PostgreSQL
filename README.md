@@ -13,6 +13,7 @@ Para executar o projeto deve-se clonar o [Projeto de Banco de Dados - Linketinde
 Em seguinte use o comando:
 
 ```bash
+gradle build
 ./gradlew run --console plain
 ```
 

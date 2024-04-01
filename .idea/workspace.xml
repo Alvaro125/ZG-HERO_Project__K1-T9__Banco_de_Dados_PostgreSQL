@@ -4,43 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d787a77f-7c8b-43f3-b593-f7d84e8ebda1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jpa-buddy.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/groovy/org/example/Main.groovy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/groovy/org/example/config/Database.groovy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/groovy/org/example/entity/AddressEntity.groovy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/groovy/org/example/entity/JobEntity.groovy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/groovy/org/example/entity/LegalPersonEntity.groovy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/groovy/org/example/entity/NaturalPersonEntity.groovy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/groovy/org/example/entity/PersonEntity.groovy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/groovy/org/example/entity/SkillEntity.groovy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/groovy/org/example/interfaces/IPerson.groovy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/groovy/org/example/services/JobsService.groovy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/groovy/org/example/services/LegalPersonService.groovy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/groovy/org/example/services/NaturalPersonService.groovy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/groovy/org/example/services/SkillService.groovy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/groovy/org/example/ui/JobsUI.groovy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/groovy/org/example/ui/LegalPersonUI.groovy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/groovy/org/example/ui/NaturalPersonUI.groovy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/groovy/org/example/ui/SkillsUI.groovy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/groovy/org/example/ui/Terminal.groovy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/groovy/config/DatabaseTest.groovy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/groovy/services/SkillServiceTest.groovy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/groovy/utils/DBTest.groovy" afterDir="false" />
-    </list>
+    <list default="true" id="d787a77f-7c8b-43f3-b593-f7d84e8ebda1" name="Changes" comment=":tada: Commit inicial" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -272,6 +236,15 @@
       <option name="presentableId" value="Default" />
       <updated>1711213130611</updated>
     </task>
+    <task id="LOCAL-00001" summary=":tada: Commit inicial">
+      <option name="closed" value="true" />
+      <created>1711944629324</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1711944629324</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -290,5 +263,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value=":tada: Commit inicial" />
+    <option name="LAST_COMMIT_MESSAGE" value=":tada: Commit inicial" />
   </component>
 </project>
