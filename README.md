@@ -35,6 +35,13 @@ Certifique-se de que essas dependências estejam disponíveis no classpath ao ex
 - CRUD da Tabela de competências;
 - CRUD da Tabela de Vagas.
 
+## Refatoração
+- 1# ♻️ refactor: clean code || commit: 8cdf84a
+    
+    - Secagem e Simplificando funções e atributos nas classes `ui`;
+    - pequenas mudanças no sql dos `Services` para facilitar os `Tests Services`
+    - Adição dos `Tests Services`
+
 >Futaramente irei aperfeiçoar os testes
 ---
 ## Autor

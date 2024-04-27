@@ -4,21 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d787a77f-7c8b-43f3-b593-f7d84e8ebda1" name="Changes" comment=":tada: Commit inicial">
-      <change afterPath="$PROJECT_DIR$/src/test/groovy/services/JobsServiceTest.groovy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/groovy/services/LegalPersonServiceTest.groovy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/groovy/services/NaturalPersonServiceTest.groovy" afterDir="false" />
+    <list default="true" id="d787a77f-7c8b-43f3-b593-f7d84e8ebda1" name="Changes" comment=":recycle: refactor: clean code&#10;adição dos principios clean code&#10;finalização dos tests Services">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/groovy/org/example/services/JobsService.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/org/example/services/JobsService.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/groovy/org/example/services/LegalPersonService.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/org/example/services/LegalPersonService.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/groovy/org/example/services/NaturalPersonService.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/org/example/services/NaturalPersonService.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/groovy/org/example/services/SkillService.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/org/example/services/SkillService.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/groovy/org/example/ui/JobsUI.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/org/example/ui/JobsUI.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/groovy/org/example/ui/LegalPersonUI.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/org/example/ui/LegalPersonUI.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/groovy/org/example/ui/NaturalPersonUI.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/org/example/ui/NaturalPersonUI.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/groovy/org/example/ui/SkillsUI.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/org/example/ui/SkillsUI.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/groovy/services/SkillServiceTest.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/groovy/services/SkillServiceTest.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/groovy/utils/DBTest.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/groovy/utils/DBTest.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,6 +94,7 @@
     "Gradle.DatabaseTest.testConnectionIsClosed.executor": "Run",
     "Gradle.DatabaseTest.testConnectionIsValid.executor": "Run",
     "Gradle.DatabaseTest.testConnectionNotNull.executor": "Run",
+    "Gradle.JobsServiceTest.executor": "Run",
     "Gradle.JobsServiceTest.should add a job.executor": "Run",
     "Gradle.JobsServiceTest.should get a job by id.executor": "Run",
     "Gradle.JobsServiceTest.should upgrade one job per id.executor": "Run",
@@ -300,7 +289,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711944629324</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary=":recycle: refactor: clean code&#10;adição dos principios clean code&#10;finalização dos tests Services">
+      <option name="closed" value="true" />
+      <created>1714187287120</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1714187287120</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -322,7 +319,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value=":tada: Commit inicial" />
-    <option name="LAST_COMMIT_MESSAGE" value=":tada: Commit inicial" />
+    <MESSAGE value=":recycle: refactor: clean code&#10;adição dos principios clean code&#10;finalização dos tests Services" />
+    <option name="LAST_COMMIT_MESSAGE" value=":recycle: refactor: clean code&#10;adição dos principios clean code&#10;finalização dos tests Services" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/ZG_HERO_Project__K1_T9__Banco_de_Dados_PostgreSQL$SkillServiceTest.ic" NAME="SkillServiceTest Coverage Results" MODIFIED="1714011954594" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
