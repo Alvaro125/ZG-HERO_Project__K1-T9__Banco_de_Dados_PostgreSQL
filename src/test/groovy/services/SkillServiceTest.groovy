@@ -7,6 +7,7 @@ import spock.lang.AutoCleanup
 import spock.lang.Shared
 import spock.lang.Specification
 import spock.lang.Subject
+import utils.DBTest
 
 import java.sql.Connection
 import java.sql.DriverManager
@@ -18,14 +19,7 @@ class SkillServiceTest extends Specification {
     Connection conn
 
     def setup() {
-        conn = DriverManager.getConnection("jdbc:h2:mem:test;MODE=PostgreSQL", "sa", "")
-        conn.createStatement().execute("""
-            CREATE TABLE IF NOT EXISTS skills (
-                id SERIAL PRIMARY KEY,
-                title VARCHAR(255),
-                description TEXT
-            )
-        """)
+        conn = DBTest.getConnection()
     }
 
     def "should add a skill"() {
@@ -33,13 +27,14 @@ class SkillServiceTest extends Specification {
         SkillService skillService = new SkillService(conn)
 
         when:
-        skillService.addSkill("Java", "Programming language")
+        skillService.addSkill("Groovy", "Programming language")
         List<SkillEntity> skills = skillService.listSkills()
 
         then:
-        skills.size() == 1
-        skills[0].title == "Java"
-        skills[0].description == "Programming language"
+        noExceptionThrown()
+        skills.size() == 7
+        skills[6].title == "Groovy"
+        skills[6].description == "Programming language"
     }
 
     def "should get a skill by id"() {
@@ -47,12 +42,11 @@ class SkillServiceTest extends Specification {
         SkillService skillService = new SkillService(conn)
 
         when:
-        skillService.addSkill("Java", "Programming language")
-        skillService.addSkill("Python", "Scripting language")
         SkillEntity skill = skillService.oneById(1)
 
         then:
         skill.title == "Java"
+        skill.description == "Programming language"
     }
 
     def "should upgrade one skill per id"() {
@@ -62,8 +56,6 @@ class SkillServiceTest extends Specification {
         String description = "Language Cascading Style Sheet"
 
         when:
-        skillService.addSkill("HTML", "Programming language")
-        skillService.addSkill("Python", "Scripting language")
         SkillEntity skill = skillService.oneById(1)
         skill.setTitle(title)
         skill.setDescription(description)
@@ -71,12 +63,73 @@ class SkillServiceTest extends Specification {
         List<SkillEntity> skills = skillService.listSkills()
 
         then:
-        skills.size() == 2
-        skills[0].title == "CSS"
-        skills[0].description == "Language Cascading Style Sheet"
+        noExceptionThrown()
+        skills.size() == 6
+        skills.first().title == title
+        skills.first().description == description
     }
-    def cleanup() {
-        conn.close()
+
+    def "should add a skill and link to a person"() {
+        given:
+        SkillService skillService = new SkillService(conn)
+        String title = "Groovy"
+        String description = "Programming language"
+
+        when:
+        skillService.addSkill(title,description)
+        List<SkillEntity> skills = [skillService.oneById(7)]
+        skillService.addSkillByPerson(1, skills)
+        List<SkillEntity> skillsByPerson = skillService.listSkillsByPerson(1)
+
+        then:
+        skillsByPerson.size() == 3
+        skillsByPerson.last().title == title
+        skillsByPerson.last().description == description
     }
+
+    def "should delete a skill in links to people"() {
+        given:
+        SkillService skillService = new SkillService(conn)
+        Integer idPerson = 1
+        Integer id = 1
+
+        when:
+        List<SkillEntity> skillsByPerson1 = skillService.listSkillsByPerson(idPerson)
+
+        then:
+        skillsByPerson1.size() == 2
+
+        when:
+        skillService.deleteAllbyPerson(id)
+        List<SkillEntity> skillsByPerson = skillService.listSkillsByPerson(1)
+
+        then:
+        skillsByPerson.size() == 1
+    }
+    def "should delete a skill and its links to people"() {
+        given:
+        SkillService skillService = new SkillService(conn)
+        Integer idPerson = 1
+        Integer id = 1
+
+        when:
+        List<SkillEntity> skillsByPerson1 = skillService.listSkillsByPerson(idPerson)
+        List<SkillEntity> skills1 = skillService.listSkills()
+
+        then:
+        skillsByPerson1.size() == 2
+        skills1.size() == 6
+
+        when:
+        skillService.deleteById(id)
+        List<SkillEntity> skillsByPerson = skillService.listSkillsByPerson(1)
+        List<SkillEntity> skills = skillService.listSkills()
+
+        then:
+        skillsByPerson.size() == 1
+        skills.size() == 5
+    }
+
+    def cleanup() {conn.close()}
 }
 

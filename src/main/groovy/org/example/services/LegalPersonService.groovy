@@ -12,6 +12,7 @@ import java.sql.Connection
 import java.sql.PreparedStatement
 import java.sql.ResultSet
 import java.sql.SQLException
+import java.sql.Statement
 
 class LegalPersonService{
 
@@ -28,13 +29,13 @@ class LegalPersonService{
 ad.country, ad.state, ad.cep 
 FROM public.legalpeople lp 
 INNER JOIN public.people p 
-ON lp."idPerson" = p.id 
+ON lp.idPerson = p.id 
 INNER JOIN public.address ad 
 ON ad.id = p.address;""";
         ResultSet result = null;
         ArrayList<LegalPersonEntity> list = new ArrayList();
         try {
-            PreparedStatement comando = Database.conn.prepareStatement(sql);
+            PreparedStatement comando = db.prepareStatement(sql);
             result = comando.executeQuery();
             while (result.next()) {
                 Integer id = result.getInt("id")
@@ -59,17 +60,17 @@ ON ad.id = p.address;""";
         return list
     }
 
-    LegalPersonEntity onebyId(Integer id) {
+    LegalPersonEntity oneById(Integer id) {
         String sql = """SELECT lp.cnpj,p.email,p.description,p.password,p.name,p.id,p.address,
 ad.country, ad.state, ad.cep 
 FROM public.legalpeople lp 
 INNER JOIN public.people p 
-ON lp."idPerson" = p.id 
+ON lp.idPerson = p.id 
 INNER JOIN public.address ad 
 ON ad.id = p.address WHERE p.id= ? LIMIT 1;"""
         LegalPersonEntity person = null
         try {
-            PreparedStatement command = Database.conn.prepareStatement(sql)
+            PreparedStatement command = db.prepareStatement(sql)
             command.setInt(1, id)
             ResultSet result = command.executeQuery()
             if (result != null && result.next()) {
@@ -148,34 +149,38 @@ WHERE "idPerson" = ? ;""";
     void addUser(LegalPersonEntity person) {
         try {
             Integer idAddress = -1
-            Integer idPerson = -1
-            String sql1 = """INSERT INTO public.address ("country", "state", "cep") 
-            VALUES (?, ?, ?) RETURNING id;""";
-            PreparedStatement command1 = db.prepareStatement(sql1)
+            String sql1 = """INSERT INTO public.address (country, state, cep) 
+            VALUES (?, ?, ?)""";
+            PreparedStatement command1 = db.prepareStatement(sql1, Statement.RETURN_GENERATED_KEYS)
             command1.setString(1, person.address.getCountry());
             command1.setString(2, person.address.getState());
             command1.setString(3, person.address.getCep());
-            ResultSet result1 = command1.executeQuery();
-            if (result1 != null && result1.next()) {
-                idAddress = result1.getInt("id")
+            command1.executeUpdate()
+            ResultSet generatedKeys = command1.getGeneratedKeys()
+            if (generatedKeys.next()) {
+                idAddress = generatedKeys.getInt(1)
             }
             command1.close();
+
+            Integer idPerson = -1
             String sql2 = """INSERT INTO people 
 (email, name, description, address, password) 
-                    VALUES (?, ?, ?, ?, ?) RETURNING id;""";
-            PreparedStatement command2 = db.prepareStatement(sql2)
+                    VALUES (?, ?, ?, ?, ?)""";
+            PreparedStatement command2 = db.prepareStatement(sql2, Statement.RETURN_GENERATED_KEYS)
             command2.setString(1, person.getEmail());
             command2.setString(2, person.getName());
             command2.setString(3, person.getDescription());
             command2.setInt(4, idAddress);
             command2.setString(5, person.getPassword());
-            ResultSet result2 = command2.executeQuery();
-            if (result2 != null && result2.next()) {
-                idPerson = result2.getInt("id")
+            command2.executeUpdate()
+            ResultSet generatedKeys2 = command2.getGeneratedKeys()
+            if (generatedKeys2.next()) {
+                idPerson = generatedKeys2.getInt(1)
             }
             command2.close();
+
             skillService.addSkillByPerson(idPerson,person.skills)
-            String sql3 = """INSERT INTO legalpeople ("idPerson", "cnpj") 
+            String sql3 = """INSERT INTO legalpeople (idPerson, cnpj) 
                     VALUES (?, ?);""";
             PreparedStatement command3 = db.prepareStatement(sql3)
             command3.setInt(1, idPerson);
@@ -191,7 +196,7 @@ WHERE "idPerson" = ? ;""";
         try {
             skillService.deleteSkillByPerson(person.id)
 
-            String sql1 = """DELETE FROM legalpeople WHERE "idPerson" = ?;"""
+            String sql1 = """DELETE FROM legalpeople WHERE idPerson = ?;"""
             PreparedStatement command1 = db.prepareStatement(sql1)
             command1.setInt(1, person.id)
             command1.executeUpdate()

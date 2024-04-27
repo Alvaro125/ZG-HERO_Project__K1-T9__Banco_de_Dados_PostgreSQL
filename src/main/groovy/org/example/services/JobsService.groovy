@@ -11,6 +11,7 @@ import java.sql.Connection
 import java.sql.PreparedStatement
 import java.sql.ResultSet
 import java.sql.SQLException
+import java.sql.Statement
 
 class JobsService {
 
@@ -25,14 +26,14 @@ class JobsService {
     }
 
     List<JobEntity> listAll() {
-        String sql = """SELECT jobs.id, jobs."idLegalPerson" ,jobs.name,jobs.description,
-jobs."local",address.country,address.state,address.cep FROM jobs
+        String sql = """SELECT jobs.id, jobs.idLegalPerson ,jobs.name,jobs.description,
+jobs.local,address.country,address.state,address.cep FROM jobs
 INNER JOIN address
-ON address.id = jobs."local"; """;
+ON address.id = jobs.local; """;
         ResultSet result = null;
         ArrayList<JobEntity> list = new ArrayList();
         try {
-            PreparedStatement comando = Database.conn.prepareStatement(sql);
+            PreparedStatement comando = db.prepareStatement(sql);
             result = comando.executeQuery();
             while (result.next()) {
                 Integer id = result.getInt("id")
@@ -47,7 +48,7 @@ ON address.id = jobs."local"; """;
                 address.setId(local)
                 list.add(new JobEntity(name, description,
                         address,
-                legalPersonService.onebyId(idPerson),id))
+                legalPersonService.oneById(idPerson),id))
             }
             result.close()
             comando.close()
@@ -65,7 +66,7 @@ ON address.id = jobs."local" WHERE jobs."idLegalPerson" = ?; """;
         ResultSet result = null;
         ArrayList<JobEntity> list = new ArrayList();
         try {
-            PreparedStatement comando = Database.conn.prepareStatement(sql);
+            PreparedStatement comando = db.prepareStatement(sql);
             comando.setInt(1, idPerson)
             result = comando.executeQuery();
             while (result.next()) {
@@ -90,15 +91,15 @@ ON address.id = jobs."local" WHERE jobs."idLegalPerson" = ?; """;
         return list
     }
 
-    JobEntity onebyId(Integer id) {
-        String sql = """SELECT jobs.id, jobs."idLegalPerson" ,jobs.name,jobs.description,
-jobs."local",address.country,address.state,address.cep FROM jobs
+    JobEntity oneById(Integer id) {
+        String sql = """SELECT jobs.id, jobs.idLegalPerson ,jobs.name,jobs.description,
+jobs.local,address.country,address.state,address.cep FROM jobs
 INNER JOIN address
-ON address.id = jobs."local" 
+ON address.id = jobs.local 
 WHERE jobs.id=? LIMIT 1;"""
         JobEntity job = null
         try {
-            PreparedStatement command = Database.conn.prepareStatement(sql)
+            PreparedStatement command = db.prepareStatement(sql)
             command.setInt(1, id)
             ResultSet result = command.executeQuery()
             if (result != null && result.next()) {
@@ -113,7 +114,7 @@ WHERE jobs.id=? LIMIT 1;"""
                 address.setId(local)
                 job = new JobEntity(name, description,
                         address,
-                        legalPersonService.onebyId(idPerson),id)
+                        legalPersonService.oneById(idPerson),id)
             }
             if (result != null) {
                 result.close()
@@ -159,25 +160,26 @@ WHERE id = ?;""";
     void addJob(JobEntity job) {
         try {
             Integer idAddress = -1
-            String sql1 = """INSERT INTO public.address ("country", "state", "cep") 
-            VALUES (?, ?, ?) RETURNING id;""";
-            PreparedStatement command1 = db.prepareStatement(sql1)
+            String sql1 = """INSERT INTO address (country, state, cep) 
+            VALUES (?, ?, ?)""";
+            PreparedStatement command1 = db.prepareStatement(sql1, Statement.RETURN_GENERATED_KEYS)
             command1.setString(1, job.local.getCountry());
             command1.setString(2, job.local.getState());
             command1.setString(3, job.local.getCep());
-            ResultSet result1 = command1.executeQuery();
-            if (result1 != null && result1.next()) {
-                idAddress = result1.getInt("id")
+            command1.executeUpdate()
+            ResultSet generatedKeys = command1.getGeneratedKeys()
+            if (generatedKeys.next()) {
+                idAddress = generatedKeys.getInt(1)
             }
-            command1.close();
+            command1.close()
             String sql2 = """INSERT INTO jobs 
-(name, description, local, "idLegalPerson") 
+(name, description, local, idLegalPerson) 
                     VALUES (?, ?, ?, ?)""";
             PreparedStatement command2 = db.prepareStatement(sql2)
             command2.setString(1, job.getName());
             command2.setString(2, job.getDescription());
             command2.setInt(3, idAddress);
-            command2.setInt(4, job.person.getId());
+            command2.setInt(4, job.person.id);
             command2.execute();
             command2.close();
 

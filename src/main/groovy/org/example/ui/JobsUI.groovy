@@ -10,15 +10,10 @@ import org.example.services.LegalPersonService
 import org.example.services.SkillService
 
 class JobsUI {
-    private static SkillService skillService
-    private static JobsService jobsService
-    private static LegalPersonService legalPersonService
+    private static SkillService skillService = new SkillService(Database.conn)
+    private static JobsService jobsService = new JobsService(Database.conn)
+    private static LegalPersonService legalPersonService = new LegalPersonService(Database.conn)
 
-    JobsUI(){
-        skillService = new SkillService(Database.conn)
-        legalPersonService = new LegalPersonService(Database.conn)
-        jobsService = new JobsService(Database.conn)
-    }
     void read() {
         println """
 @@Lista de Vagas@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -27,140 +22,111 @@ ${jobsService.listAll().join("\n")}
     }
 
     void create(BufferedReader br) {
-        JobEntity job = null
-        LegalPersonEntity person = null
-        new LegalPersonUI().read()
-        print "Empresa: "
-        String idPerson = br.readLine()
-        if (!idPerson.isEmpty()) person = legalPersonService.onebyId(idPerson.toInteger())
-        while (idPerson.isEmpty() || !person){
-            if (!person) {
-                println "Id da Empresa Inválido"
-            }
-            print "Empresa: "
-            idPerson = br.readLine()
-            if (!idPerson.isEmpty()) person = legalPersonService.onebyId(idPerson.toInteger())
+        LegalPersonEntity person = getValidLegalPerson(br)
+        if (person == null) {
+            return
         }
-        print "Titulo do Emprego:"
-        String name = br.readLine()
-        while (name.isEmpty()){
-            print "Titulo do Emprego:"
-            name = br.readLine()
-        }
-        print "Descrição do Emprego:"
-        String description = br.readLine()
-        while (description.isEmpty()){
-            print "Descrição do Emprego:"
-            description = br.readLine()
-        }
-        print "Endereço:\n\tPais:"
-        String country = br.readLine()
-        while (country.isEmpty()){
-            print "\tPais:"
-            country = br.readLine()
-        }
-        print "\tEstado:"
-        String state = br.readLine()
-        while (state.isEmpty()){
-            print "\tEstado:"
-            state = br.readLine()
-        }
-        print "\tCEP:"
-        String cep = br.readLine()
-        while (cep.isEmpty()){
-            print "\tCEP:"
-            cep = br.readLine()
-        }
-        job = new JobEntity(name,description,
-        new AddressEntity(country,state,cep),person,0)
+        String name = readNonEmptyInput(br, "Titulo do Emprego:")
+        String description = readNonEmptyInput(br, "Descrição do Emprego:")
+        AddressEntity address = getAddressFromInput(br)
+        JobEntity job = new JobEntity(name, description, address, person, 0)
         jobsService.addJob(job)
     }
 
     void update(BufferedReader br) {
-        JobEntity job = null
-        LegalPersonEntity person = null
-        new LegalPersonUI().read()
-        print "Empresa: "
-        String idPerson = br.readLine()
-        if (!idPerson.isEmpty()) person = legalPersonService.onebyId(idPerson.toInteger())
-        while (idPerson.isEmpty() || !person){
-            if (!person) {
-                println "Id da Empresa Inválido"
-            }
-            print "Empresa: "
-            idPerson = br.readLine()
-            if (!idPerson.isEmpty()) person = legalPersonService.onebyId(idPerson.toInteger())
+        LegalPersonEntity person = getValidLegalPerson(br)
+        if (person == null) {
+            return
         }
-        println jobsService.listByPerson(idPerson.toInteger()).join("\n")
 
+        println jobsService.listByPerson(person.id).join("\n")
         print "Vaga: "
-        String idJob = br.readLine()
-        if (!idJob.isEmpty()) job = jobsService.onebyId(idJob.toInteger())
-        while (idJob.isEmpty() || !person){
-            if (!person) {
-                println "Id da Vaga Inválido"
-            }
-            print "Vaga: "
-            idJob = br.readLine()
-            if (!idJob.isEmpty()) job = jobsService.onebyId(idJob.toInteger())
+        JobEntity job = getValidJob(br, person)
+        if (job == null) {
+            return
         }
 
-        print "Titulo do Emprego(${job.name}):"
-        String name = br.readLine()
-        if (!name.isEmpty()){
-            job.setName(name)
-        }
-        print "Descrição do Emprego(${job.description}):"
-        String description = br.readLine()
-        if (!description.isEmpty()){
-            job.setDescription(description)
-        }
-        print "Endereço:\n\tPais(${job.local.country}):"
-        String country = br.readLine()
-        if (!country.isEmpty()){
-            job.local.setCountry(country)
-        }
-        print "\tEstado(${job.local.state}):"
-        String state = br.readLine()
-        if (!state.isEmpty()){
-            job.local.setState(state)
-        }
-        print "\tCEP(${job.local.cep}):"
-        String cep = br.readLine()
-        if (!cep.isEmpty()){
-            job.local.setCep(cep)
-        }
+        updateJobDetails(br, job)
         jobsService.updateById(job)
     }
 
     void delete(BufferedReader br) {
+        LegalPersonEntity person = getValidLegalPerson(br)
+        if (person == null) {
+            return
+        }
+
+        println jobsService.listByPerson(person.id).join("\n")
+        print "Vaga: "
+        JobEntity job = getValidJob(br, person)
+        if (job == null) {
+            return
+        }
+
+        jobsService.deleteById(job)
+    }
+
+    private JobEntity getValidJob(BufferedReader br, LegalPersonEntity person) {
         JobEntity job = null
+        while (true) {
+            String idJob = br.readLine()
+            if (idJob.isEmpty()) {
+                return null
+            }
+
+            job = jobsService.onebyId(idJob.toInteger())
+            if (job == null || job.person.id != person.id) {
+                println "Id da Vaga Inválido"
+            } else {
+                return job
+            }
+        }
+    }
+
+    private JobEntity updateJobDetails(BufferedReader br, JobEntity job) {
+        String name = readNonEmptyInput(br, "Titulo do Emprego(${job.name}):")
+        job.setName(name)
+        String description = readNonEmptyInput(br, "Descrição do Emprego(${job.description}):")
+        job.setDescription(description)
+
+        AddressEntity address = getAddressFromInput(br)
+        job.local = address
+        job
+    }
+
+
+    private LegalPersonEntity getValidLegalPerson(BufferedReader br) {
         LegalPersonEntity person = null
         new LegalPersonUI().read()
-        print "Empresa: "
-        String idPerson = br.readLine()
-        if (!idPerson.isEmpty()) person = legalPersonService.onebyId(idPerson.toInteger())
-        while (idPerson.isEmpty() || !person){
-            if (!person) {
-                println "Id da Empresa Inválido"
-            }
+        while (true) {
             print "Empresa: "
-            idPerson = br.readLine()
-            if (!idPerson.isEmpty()) person = legalPersonService.onebyId(idPerson.toInteger())
-        }
-        println jobsService.listByPerson(idPerson.toInteger()).join("\n")
-
-        print "Vaga: "
-        String idJob = br.readLine()
-        if (!idJob.isEmpty()) job = jobsService.onebyId(idJob.toInteger())
-        while (idJob.isEmpty() || !person){
-            if (!person) {
-                println "Id da Vaga Inválido"
+            String idPerson = br.readLine()
+            if (idPerson.isEmpty()) {
+                return null
             }
-            print "Vaga: "
-            idJob = br.readLine()
-            if (!idJob.isEmpty()) job = jobsService.onebyId(idJob.toInteger())
+
+            person = legalPersonService.onebyId(idPerson.toInteger())
+            if (person == null) {
+                println "Id da Empresa Inválido"
+            } else {
+                return person
+            }
         }
-        jobsService.deleteById(job)
+    }
+
+    private AddressEntity getAddressFromInput(BufferedReader br) {
+        String country = readNonEmptyInput(br, "Endereço:\n\tPais")
+        String state = readNonEmptyInput(br, "\tEstado:")
+        String cep = readNonEmptyInput(br, "\tCEP:")
+        new AddressEntity(country, state, cep)
+    }
+
+    private String readNonEmptyInput(BufferedReader br, String prompt) {
+        String input
+        do {
+            print prompt
+            input = br.readLine()
+        } while (input.isEmpty())
+        input
     }
 }

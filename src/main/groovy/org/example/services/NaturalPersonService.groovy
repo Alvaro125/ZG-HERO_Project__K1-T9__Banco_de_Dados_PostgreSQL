@@ -10,6 +10,7 @@ import java.sql.Connection
 import java.sql.PreparedStatement
 import java.sql.ResultSet
 import java.sql.SQLException
+import java.sql.Statement
 
 class NaturalPersonService {
 
@@ -26,13 +27,13 @@ class NaturalPersonService {
 ad.country, ad.state, ad.cep 
 FROM public.naturalpeople np 
 INNER JOIN public.people p 
-ON np."idPerson" = p.id 
+ON np.idPerson = p.id 
 INNER JOIN public.address ad 
 ON ad.id = p.address;""";
         ResultSet result = null;
         ArrayList<NaturalPersonEntity> list = new ArrayList();
         try {
-            PreparedStatement comando = Database.conn.prepareStatement(sql);
+            PreparedStatement comando = db.prepareStatement(sql);
             result = comando.executeQuery();
             while (result.next()) {
                 Integer id = result.getInt("id")
@@ -58,17 +59,17 @@ ON ad.id = p.address;""";
         return list
     }
 
-    NaturalPersonEntity onebyId(Integer id) {
+    NaturalPersonEntity oneById(Integer id) {
         String sql = """SELECT np.cpf, np.age,p.email,p.description,p.password,p.name,p.id,p.address,
 ad.country, ad.state, ad.cep 
 FROM public.naturalpeople np 
 INNER JOIN public.people p 
-ON np."idPerson" = p.id 
+ON np.idPerson = p.id 
 INNER JOIN public.address ad 
 ON ad.id = p.address WHERE p.id= ? LIMIT 1;"""
         NaturalPersonEntity person = null
         try {
-            PreparedStatement command = Database.conn.prepareStatement(sql)
+            PreparedStatement command = db.prepareStatement(sql)
             command.setInt(1, id)
             ResultSet result = command.executeQuery()
             if (result != null && result.next()) {
@@ -134,7 +135,7 @@ WHERE id = ?;""";
             String sql3 = """
 UPDATE naturalpeople 
 SET cpf = ? , age = ? 
-WHERE "idPerson" = ? ;""";
+WHERE idPerson = ? ;""";
             PreparedStatement command3 = db.prepareStatement(sql3);
             command3.setString(1, person.cpf);
             command3.setInt(2, person.age);
@@ -149,51 +150,51 @@ WHERE "idPerson" = ? ;""";
     def addUser(NaturalPersonEntity person) {
         try {
             Integer idAddress = -1
-            Integer idPerson = -1
-            String sql1 = """INSERT INTO address ("country", "state", "cep") 
-            VALUES (?, ?, ?) RETURNING id;""";
-            PreparedStatement command1 = db.prepareStatement(sql1)
-            command1.setString(1, person.address.getCountry());
-            command1.setString(2, person.address.getState());
-            command1.setString(3, person.address.getCep());
-            ResultSet result1 = command1.executeQuery();
-            if (result1 != null && result1.next()) {
-                idAddress = result1.getInt("id")
+            String sql1 = "INSERT INTO address (country, state, cep) VALUES (?, ?, ?)"
+            PreparedStatement command1 = db.prepareStatement(sql1, Statement.RETURN_GENERATED_KEYS)
+            command1.setString(1, person.address.getCountry())
+            command1.setString(2, person.address.getState())
+            command1.setString(3, person.address.getCep())
+            command1.executeUpdate()
+            ResultSet generatedKeys = command1.getGeneratedKeys()
+            if (generatedKeys.next()) {
+                idAddress = generatedKeys.getInt(1)
             }
-            command1.close();
-            String sql2 = """INSERT INTO people 
-(email, name, description, address, password) 
-                    VALUES (?, ?, ?, ?, ?) RETURNING id;""";
-            PreparedStatement command2 = db.prepareStatement(sql2)
-            command2.setString(1, person.getEmail());
-            command2.setString(2, person.getName());
-            command2.setString(3, person.getDescription());
-            command2.setInt(4, idAddress);
-            command2.setString(5, person.getPassword());
-            ResultSet result2 = command2.executeQuery();
-            if (result2 != null && result2.next()) {
-                idPerson = result2.getInt("id")
-            }
-            command2.close();
-            skillService.addSkillByPerson(idPerson,person.skills)
-            String sql3 = """INSERT INTO naturalpeople ("idPerson", "cpf", "age") 
-                    VALUES (?, ?, ?);""";
-            PreparedStatement command3 = db.prepareStatement(sql3)
-            command3.setInt(1, idPerson);
-            command3.setString(2, person.cpf);
-            command3.setInt(3, person.age);
-            command3.execute()
-            command3.close();
+            command1.close()
 
+            Integer idPerson = -1
+            String sql2 = "INSERT INTO people (email, name, description, address, password) VALUES (?, ?, ?, ?, ?)"
+            PreparedStatement command2 = db.prepareStatement(sql2, Statement.RETURN_GENERATED_KEYS)
+            command2.setString(1, person.getEmail())
+            command2.setString(2, person.getName())
+            command2.setString(3, person.getDescription())
+            command2.setInt(4, idAddress)
+            command2.setString(5, person.getPassword())
+            command2.executeUpdate()
+            ResultSet generatedKeys2 = command2.getGeneratedKeys()
+            if (generatedKeys2.next()) {
+                idPerson = generatedKeys2.getInt(1)
+            }
+            command2.close()
+
+            skillService.addSkillByPerson(idPerson, person.skills)
+            String sql3 = "INSERT INTO naturalpeople (idPerson, cpf, age) VALUES (?, ?, ?)"
+            PreparedStatement command3 = db.prepareStatement(sql3)
+            command3.setInt(1, idPerson)
+            command3.setString(2, person.cpf)
+            command3.setInt(3, person.age)
+            command3.execute()
+            command3.close()
         } catch (SQLException exceção_sql) {
-            exceção_sql.printStackTrace();
+            exceção_sql.printStackTrace()
         }
     }
+
     def deleteById(NaturalPersonEntity person) {
         try {
             skillService.deleteSkillByPerson(person.id)
 
-            String sql1 = """DELETE FROM naturalpeople WHERE "idPerson" = ?;"""
+            String sql1 = """DELETE FROM naturalpeople WHERE idPerson = ?;"""
             PreparedStatement command1 = db.prepareStatement(sql1)
             command1.setInt(1, person.id)
             command1.executeUpdate()

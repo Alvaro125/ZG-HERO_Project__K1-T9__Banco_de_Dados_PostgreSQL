@@ -33,7 +33,7 @@ public class SkillService {
 
     void addSkillByPerson(Integer idPerson, List<SkillEntity> skills) {
         try {
-            String sql = """INSERT INTO skills_people ("skills_id", "people_id") VALUES (?,?)""";
+            String sql = """INSERT INTO skills_people (skills_id, people_id) VALUES (?,?)""";
 
             for (SkillEntity skill : skills) {
                 PreparedStatement command = db.prepareStatement(sql);
@@ -86,7 +86,7 @@ ORDER BY id ASC;""";
     List<SkillEntity> listSkillsByPerson(Integer idPerson) {
         String sql = """
 SELECT sk.title, sk.description, sk.id FROM public.skills_people sp
-INNER JOIN public.skills sk ON sk.id = sp.skills_id
+INNER JOIN skills sk ON sk.id = sp.skills_id
 WHERE sp.people_id = ?;""";
         ResultSet list_results = null;
         ArrayList<SkillEntity> list = new ArrayList();
