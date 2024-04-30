@@ -1,5 +1,11 @@
 package services
 
+import org.example.dao.AddressDao
+import org.example.dao.NaturalPersonDao
+import org.example.dao.PersonDao
+import org.example.dao.impl.AddressDaoImpl
+import org.example.dao.impl.NaturalPersonDaoImpl
+import org.example.dao.impl.PersonDaoImpl
 import org.example.entity.AddressEntity
 import org.example.entity.NaturalPersonEntity
 import org.example.services.NaturalPersonService
@@ -9,22 +15,28 @@ import spock.lang.Subject
 import utils.DBTest
 
 import java.sql.Connection
-import java.sql.DriverManager
-import java.sql.SQLException
 
 class NaturalPersonServiceTest extends Specification {
 
     @AutoCleanup
     Connection conn
 
+    NaturalPersonDao naturalPersonDao
+    AddressDao addressDao
+    PersonDao personDao
+
     def setup() {
         conn = DBTest.getConnection()
+        naturalPersonDao = new NaturalPersonDaoImpl(conn)
+        addressDao = new AddressDaoImpl(conn)
+        personDao = new PersonDaoImpl(conn)
     }
 
 
     def "should add and retrieve a natural person"() {
         given:
-        NaturalPersonService naturalPersonService = new NaturalPersonService(conn)
+        NaturalPersonService naturalPersonService = new NaturalPersonService(naturalPersonDao,
+                addressDao, personDao)
         def address = new AddressEntity("Country", "State", "12345678")
         def person = new NaturalPersonEntity(
                 "John Doe",
@@ -56,7 +68,8 @@ class NaturalPersonServiceTest extends Specification {
 
     def "should update a natural person"() {
         given:
-        NaturalPersonService naturalPersonService = new NaturalPersonService(conn)
+        NaturalPersonService naturalPersonService = new NaturalPersonService(naturalPersonDao,
+                addressDao, personDao)
         def address = new AddressEntity("Country", "State", "12345678")
         def person = new NaturalPersonEntity(
                 "John Doe",
@@ -97,7 +110,8 @@ class NaturalPersonServiceTest extends Specification {
 
     def "should delete a natural person"() {
         given:
-        NaturalPersonService naturalPersonService = new NaturalPersonService(conn)
+        NaturalPersonService naturalPersonService = new NaturalPersonService(naturalPersonDao,
+                addressDao, personDao)
         def address = new AddressEntity("Country", "State", "12345678")
         def person = new NaturalPersonEntity(
                 "John Doe",

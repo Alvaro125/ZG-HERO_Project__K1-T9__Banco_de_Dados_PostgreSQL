@@ -4,9 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d787a77f-7c8b-43f3-b593-f7d84e8ebda1" name="Changes" comment=":recycle: refactor: clean code&#10;adição dos principios clean code&#10;finalização dos tests Services">
+    <list default="true" id="d787a77f-7c8b-43f3-b593-f7d84e8ebda1" name="Changes" comment=":books: docs: info de refactor">
+      <change afterPath="$PROJECT_DIR$/src/main/groovy/org/example/dao/AddressDao.groovy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/groovy/org/example/dao/NaturalPersonDao.groovy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/groovy/org/example/dao/PersonDao.groovy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/groovy/org/example/dao/SkillDao.groovy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/groovy/org/example/dao/impl/AddressDaoImpl.groovy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/groovy/org/example/dao/impl/NaturalPersonDaoImpl.groovy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/groovy/org/example/dao/impl/PersonDaoImpl.groovy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/groovy/org/example/dao/impl/SkillDaoImpl.groovy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/groovy/org/example/entity/AddressEntity.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/org/example/entity/AddressEntity.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/groovy/org/example/services/NaturalPersonService.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/org/example/services/NaturalPersonService.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/groovy/org/example/services/SkillService.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/org/example/services/SkillService.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/groovy/org/example/ui/SkillsUI.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/org/example/ui/SkillsUI.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/groovy/services/NaturalPersonServiceTest.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/groovy/services/NaturalPersonServiceTest.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/groovy/services/SkillServiceTest.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/groovy/services/SkillServiceTest.groovy" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,7 +119,7 @@
     "Gradle.NaturalPersonServiceTest.should delete a natural person.executor": "Run",
     "Gradle.NaturalPersonServiceTest.should update a natural person.executor": "Run",
     "Gradle.SkillServiceSpec.should add a skill.executor": "Run",
-    "Gradle.SkillServiceTest.executor": "Coverage",
+    "Gradle.SkillServiceTest.executor": "Run",
     "Gradle.SkillServiceTest.should add a skill and link to a person.executor": "Run",
     "Gradle.SkillServiceTest.should add a skill successfully.executor": "Run",
     "Gradle.SkillServiceTest.should add a skill.executor": "Run",
@@ -136,13 +149,15 @@
       <recent name="$PROJECT_DIR$/src/main/groovy/org/example" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.example.dao" />
+      <recent name="org.example.dao.impl" />
       <recent name="services" />
       <recent name="org.example.services" />
       <recent name="org.example.ui" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.JobsServiceTest">
-    <configuration name="JobsServiceTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+  <component name="RunManager" selected="Gradle.SkillServiceTest">
+    <configuration name="NaturalPersonServiceTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -155,7 +170,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;services.JobsServiceTest&quot;" />
+            <option value="&quot;services.NaturalPersonServiceTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -166,7 +181,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="JobsServiceTest.should add a job" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="NaturalPersonServiceTest.should add and retrieve a natural person" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -179,7 +194,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;services.JobsServiceTest.should add a job&quot;" />
+            <option value="&quot;services.NaturalPersonServiceTest.should add and retrieve a natural person&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -190,7 +205,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="JobsServiceTest.should get a job by id" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="NaturalPersonServiceTest.should delete a natural person" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -203,7 +218,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;services.JobsServiceTest.should get a job by id&quot;" />
+            <option value="&quot;services.NaturalPersonServiceTest.should delete a natural person&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -214,7 +229,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="JobsServiceTest.should upgrade one job per id" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="SkillServiceTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -227,7 +242,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;services.JobsServiceTest.should upgrade one job per id&quot;" />
+            <option value="&quot;services.SkillServiceTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -238,7 +253,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="LegalPersonServiceTest.should delete a legal person" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="SkillServiceTest.should add a skill" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -251,7 +266,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;services.LegalPersonServiceTest.should delete a legal person&quot;" />
+            <option value="&quot;services.SkillServiceTest.should add a skill&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -264,11 +279,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.JobsServiceTest" />
-        <item itemvalue="Gradle.JobsServiceTest.should upgrade one job per id" />
-        <item itemvalue="Gradle.JobsServiceTest.should get a job by id" />
-        <item itemvalue="Gradle.JobsServiceTest.should add a job" />
-        <item itemvalue="Gradle.LegalPersonServiceTest.should delete a legal person" />
+        <item itemvalue="Gradle.SkillServiceTest" />
+        <item itemvalue="Gradle.SkillServiceTest.should add a skill" />
+        <item itemvalue="Gradle.NaturalPersonServiceTest" />
+        <item itemvalue="Gradle.NaturalPersonServiceTest.should add and retrieve a natural person" />
+        <item itemvalue="Gradle.NaturalPersonServiceTest.should delete a natural person" />
       </list>
     </recent_temporary>
   </component>
@@ -297,7 +312,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714187287120</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary=":books: docs: info de refactor">
+      <option name="closed" value="true" />
+      <created>1714187927866</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1714187927866</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -320,7 +343,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value=":tada: Commit inicial" />
     <MESSAGE value=":recycle: refactor: clean code&#10;adição dos principios clean code&#10;finalização dos tests Services" />
-    <option name="LAST_COMMIT_MESSAGE" value=":recycle: refactor: clean code&#10;adição dos principios clean code&#10;finalização dos tests Services" />
+    <MESSAGE value=":books: docs: info de refactor" />
+    <option name="LAST_COMMIT_MESSAGE" value=":books: docs: info de refactor" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/ZG_HERO_Project__K1_T9__Banco_de_Dados_PostgreSQL$SkillServiceTest.ic" NAME="SkillServiceTest Coverage Results" MODIFIED="1714011954594" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />

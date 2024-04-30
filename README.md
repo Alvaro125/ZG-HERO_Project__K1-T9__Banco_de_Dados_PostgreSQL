@@ -41,6 +41,10 @@ Certifique-se de que essas dependências estejam disponíveis no classpath ao ex
     - Secagem e Simplificando funções e atributos nas classes `ui`;
     - pequenas mudanças no sql dos `Services` para facilitar os `Tests Services`
     - Adição dos `Tests Services`
+- 2# ♻️ refactor: solid
+
+  - Redução dos tamanhos das funções 
+  - Inserção da arquitetura DAO
 
 >Futaramente irei aperfeiçoar os testes
 ---

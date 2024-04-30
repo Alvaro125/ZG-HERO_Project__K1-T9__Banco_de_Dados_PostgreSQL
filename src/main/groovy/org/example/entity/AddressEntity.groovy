@@ -6,10 +6,11 @@ class AddressEntity {
     String state
     String cep
 
-    AddressEntity(String country, String state, String cep) {
+    AddressEntity(String country, String state, String cep, Integer id = 0) {
         this.country = country
         this.state = state
         this.cep = cep
+        this.id = id
     }
 
     Integer getId() {

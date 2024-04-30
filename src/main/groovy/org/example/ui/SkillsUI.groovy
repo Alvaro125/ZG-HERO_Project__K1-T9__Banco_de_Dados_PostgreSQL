@@ -15,11 +15,12 @@ ${skillService.listSkills().join("\n")}
     }
 
     void create(BufferedReader br) {
+        SkillEntity skill = new SkillEntity()
         print "Titulo da Competencia:"
-        String title = readInput(br, "Titulo da Competencia")
+        skill.title = readInput(br, "Titulo da Competencia")
         print "Descrição da Competencia:"
-        String description = readInput(br, "Descrição da Competencia")
-        skillService.addSkill(title, description)
+        skill.description = readInput(br, "Descrição da Competencia")
+        skillService.addSkill(skill)
     }
 
     void update(BufferedReader br) {

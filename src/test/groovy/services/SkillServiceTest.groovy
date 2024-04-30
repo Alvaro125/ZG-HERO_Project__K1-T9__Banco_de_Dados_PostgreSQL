@@ -1,6 +1,8 @@
 package services
 
 import org.example.config.Database
+import org.example.dao.SkillDao
+import org.example.dao.impl.SkillDaoImpl
 import org.example.entity.SkillEntity
 import org.example.services.SkillService
 import spock.lang.AutoCleanup
@@ -18,16 +20,18 @@ class SkillServiceTest extends Specification {
     @AutoCleanup
     Connection conn
 
+    SkillDao skillDao
     def setup() {
         conn = DBTest.getConnection()
+        skillDao = new SkillDaoImpl(conn)
     }
 
     def "should add a skill"() {
         given:
-        SkillService skillService = new SkillService(conn)
+        SkillService skillService = new SkillService(skillDao)
 
         when:
-        skillService.addSkill("Groovy", "Programming language")
+        skillService.addSkill(new SkillEntity("Groovy", "Programming language"))
         List<SkillEntity> skills = skillService.listSkills()
 
         then:
@@ -39,7 +43,7 @@ class SkillServiceTest extends Specification {
 
     def "should get a skill by id"() {
         given:
-        SkillService skillService = new SkillService(conn)
+        SkillService skillService = new SkillService(skillDao)
 
         when:
         SkillEntity skill = skillService.oneById(1)
@@ -51,7 +55,7 @@ class SkillServiceTest extends Specification {
 
     def "should upgrade one skill per id"() {
         given:
-        SkillService skillService = new SkillService(conn)
+        SkillService skillService = new SkillService(skillDao)
         String title = "CSS"
         String description = "Language Cascading Style Sheet"
 
@@ -71,12 +75,12 @@ class SkillServiceTest extends Specification {
 
     def "should add a skill and link to a person"() {
         given:
-        SkillService skillService = new SkillService(conn)
+        SkillService skillService = new SkillService(skillDao)
         String title = "Groovy"
         String description = "Programming language"
 
         when:
-        skillService.addSkill(title,description)
+        skillService.addSkill(new SkillEntity(title,description))
         List<SkillEntity> skills = [skillService.oneById(7)]
         skillService.addSkillByPerson(1, skills)
         List<SkillEntity> skillsByPerson = skillService.listSkillsByPerson(1)
@@ -89,7 +93,7 @@ class SkillServiceTest extends Specification {
 
     def "should delete a skill in links to people"() {
         given:
-        SkillService skillService = new SkillService(conn)
+        SkillService skillService = new SkillService(skillDao)
         Integer idPerson = 1
         Integer id = 1
 
@@ -108,7 +112,7 @@ class SkillServiceTest extends Specification {
     }
     def "should delete a skill and its links to people"() {
         given:
-        SkillService skillService = new SkillService(conn)
+        SkillService skillService = new SkillService(skillDao)
         Integer idPerson = 1
         Integer id = 1
 
