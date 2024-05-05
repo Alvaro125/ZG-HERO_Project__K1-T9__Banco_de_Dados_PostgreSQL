@@ -24,7 +24,7 @@ abstract class PersonEntity {
     void setPassword(String password) {
         this.password = password
     }
-
+    PersonEntity(){}
     PersonEntity(String name, String email, String password,
                  String description, AddressEntity address,Integer id, List<SkillEntity> skills=[]) {
         this.id = id

@@ -8,7 +8,8 @@ class DBTest {
     public static Connection conn;
 
     public static Connection getConnection() throws SQLException {
-        conn = DriverManager.getConnection("jdbc:h2:mem:test;MODE=PostgreSQL", "sa", "")
+        conn = DriverManager.getConnection("jdbc:h2:mem:test;MODE=PostgreSQL;DATABASE_TO_UPPER=false", "sa", "")
+        conn.setCatalog("SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO';");
         conn.createStatement().execute("""
         CREATE TABLE IF NOT EXISTS address (
           id SERIAL PRIMARY KEY,
@@ -88,7 +89,7 @@ class DBTest {
         
         ALTER TABLE skills_people ADD FOREIGN KEY (people_id) REFERENCES people (id);
         
-        INSERT INTO public.address (country, state, cep) VALUES 
+        INSERT INTO address (country, state, cep) VALUES 
         ('Brazil', 'Sao Paulo', '01001000'),
         ('Brazil', 'Rio de Janeiro', '20040000'),
         ('Brazil', 'Brasilia', '70000000'),
@@ -100,7 +101,7 @@ class DBTest {
         ('Brasil', 'Bahia', '40010000'),
         ('Brasil', 'Paraná', '80010000');
         
-        INSERT INTO public.people (email, name, description, address, password, created_at, updated_at, deleted_at) VALUES 
+        INSERT INTO people (email, name, description, address, password, created_at, updated_at, deleted_at) VALUES 
         ('john.doe@example.com', 'John Doe', 'Description for John Doe', 1, 'password123', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, NULL),
         ('jane.doe@example.com', 'Jane Doe', 'Description for Jane Doe', 2, 'password456', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, NULL),
         ('alice.smith@example.com', 'Alice Smith', 'Description for Alice Smith', 3, 'password789', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, NULL),
@@ -112,14 +113,14 @@ class DBTest {
         ('ana@example.com', 'Ana', 'Description 4', 9, 'senha101112', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, NULL),
         ('pedro@example.com', 'Pedro', 'Description 5', 10, 'senha131415', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, NULL);
         
-        INSERT INTO public.legalpeople (idPerson, cnpj) VALUES 
+        INSERT INTO legalpeople (idPerson, cnpj) VALUES 
         (1, '12345678000100'),
         (2, '98765432000101'),
         (3, '24680135000102'),
         (4, '13579246000103'),
         (5, '11223344000104');
         
-        INSERT INTO public.naturalpeople (idPerson, cpf, age) VALUES 
+        INSERT INTO naturalpeople (idPerson, cpf, age) VALUES 
         (6, '12345678900', 30),
         (7, '98765432100', 25),
         (8, '24680135700', 40),

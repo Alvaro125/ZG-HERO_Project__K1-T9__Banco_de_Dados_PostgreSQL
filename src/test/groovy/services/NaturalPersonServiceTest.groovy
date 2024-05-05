@@ -9,6 +9,7 @@ import org.example.dao.impl.PersonDaoImpl
 import org.example.entity.AddressEntity
 import org.example.entity.NaturalPersonEntity
 import org.example.services.NaturalPersonService
+import org.example.services.impl.NaturalPersonServiceImpl
 import spock.lang.AutoCleanup
 import spock.lang.Specification
 import spock.lang.Subject
@@ -35,7 +36,7 @@ class NaturalPersonServiceTest extends Specification {
 
     def "should add and retrieve a natural person"() {
         given:
-        NaturalPersonService naturalPersonService = new NaturalPersonService(naturalPersonDao,
+        NaturalPersonService naturalPersonService = new NaturalPersonServiceImpl(naturalPersonDao,
                 addressDao, personDao)
         def address = new AddressEntity("Country", "State", "12345678")
         def person = new NaturalPersonEntity(
@@ -68,7 +69,7 @@ class NaturalPersonServiceTest extends Specification {
 
     def "should update a natural person"() {
         given:
-        NaturalPersonService naturalPersonService = new NaturalPersonService(naturalPersonDao,
+        NaturalPersonService naturalPersonService = new NaturalPersonServiceImpl(naturalPersonDao,
                 addressDao, personDao)
         def address = new AddressEntity("Country", "State", "12345678")
         def person = new NaturalPersonEntity(
@@ -110,7 +111,7 @@ class NaturalPersonServiceTest extends Specification {
 
     def "should delete a natural person"() {
         given:
-        NaturalPersonService naturalPersonService = new NaturalPersonService(naturalPersonDao,
+        NaturalPersonService naturalPersonService = new NaturalPersonServiceImpl(naturalPersonDao,
                 addressDao, personDao)
         def address = new AddressEntity("Country", "State", "12345678")
         def person = new NaturalPersonEntity(

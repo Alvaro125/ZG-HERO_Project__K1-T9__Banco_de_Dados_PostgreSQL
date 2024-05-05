@@ -5,13 +5,16 @@ import org.example.entity.AddressEntity
 import org.example.entity.LegalPersonEntity
 import org.example.entity.NaturalPersonEntity
 import org.example.entity.SkillEntity
+import org.example.factorys.ControllerFactory
+import org.example.factorys.ServiceFactory
 import org.example.services.LegalPersonService
 import org.example.services.NaturalPersonService
 import org.example.services.SkillService
+import org.example.services.impl.NaturalPersonServiceImpl
 
 class NaturalPersonUI {
-    private static NaturalPersonService naturalPersonService = new NaturalPersonService(Database.conn)
-    private static SkillService skillService = new SkillService(Database.conn)
+    private static NaturalPersonService naturalPersonService = ServiceFactory.createNaturalPerson()
+    private static SkillService skillService = ServiceFactory.createSkill()
 
     void read() {
         println """
@@ -96,9 +99,11 @@ class NaturalPersonUI {
         List<SkillEntity> skills = []
         new SkillsUI().read()
         println "caso não queira adicionar um competencia, aperte ENTER"
+
         int count = 1
         print "Competencia #$count: "
         String idSkill = br.readLine()
+
         while (!idSkill.isEmpty()) {
             SkillEntity skill = skillService.oneById(idSkill.toInteger())
             if (skill != null) {
@@ -110,6 +115,7 @@ class NaturalPersonUI {
             print "Competencia #$count: "
             idSkill = br.readLine()
         }
+
         return skills
     }
 

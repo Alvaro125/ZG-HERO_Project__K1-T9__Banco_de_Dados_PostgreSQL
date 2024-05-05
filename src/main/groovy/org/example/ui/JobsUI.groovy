@@ -5,14 +5,15 @@ import org.example.entity.AddressEntity
 import org.example.entity.JobEntity
 import org.example.entity.LegalPersonEntity
 import org.example.entity.SkillEntity
+import org.example.factorys.ServiceFactory
 import org.example.services.JobsService
 import org.example.services.LegalPersonService
 import org.example.services.SkillService
 
 class JobsUI {
-    private static SkillService skillService = new SkillService(Database.conn)
+    private static SkillService skillService = ServiceFactory.createSkill()
     private static JobsService jobsService = new JobsService(Database.conn)
-    private static LegalPersonService legalPersonService = new LegalPersonService(Database.conn)
+    private static LegalPersonService legalPersonService = ServiceFactory.createLegalPerson()
 
     void read() {
         println """

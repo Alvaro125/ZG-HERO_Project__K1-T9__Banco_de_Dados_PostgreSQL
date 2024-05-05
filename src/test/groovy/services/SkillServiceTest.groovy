@@ -5,6 +5,7 @@ import org.example.dao.SkillDao
 import org.example.dao.impl.SkillDaoImpl
 import org.example.entity.SkillEntity
 import org.example.services.SkillService
+import org.example.services.impl.SkillServiceImpl
 import spock.lang.AutoCleanup
 import spock.lang.Shared
 import spock.lang.Specification
@@ -28,7 +29,7 @@ class SkillServiceTest extends Specification {
 
     def "should add a skill"() {
         given:
-        SkillService skillService = new SkillService(skillDao)
+        SkillService skillService = new SkillServiceImpl(skillDao)
 
         when:
         skillService.addSkill(new SkillEntity("Groovy", "Programming language"))
@@ -43,7 +44,7 @@ class SkillServiceTest extends Specification {
 
     def "should get a skill by id"() {
         given:
-        SkillService skillService = new SkillService(skillDao)
+        SkillService skillService = new SkillServiceImpl(skillDao)
 
         when:
         SkillEntity skill = skillService.oneById(1)
@@ -55,7 +56,7 @@ class SkillServiceTest extends Specification {
 
     def "should upgrade one skill per id"() {
         given:
-        SkillService skillService = new SkillService(skillDao)
+        SkillService skillService = new SkillServiceImpl(skillDao)
         String title = "CSS"
         String description = "Language Cascading Style Sheet"
 
@@ -75,7 +76,7 @@ class SkillServiceTest extends Specification {
 
     def "should add a skill and link to a person"() {
         given:
-        SkillService skillService = new SkillService(skillDao)
+        SkillService skillService = new SkillServiceImpl(skillDao)
         String title = "Groovy"
         String description = "Programming language"
 
@@ -93,7 +94,7 @@ class SkillServiceTest extends Specification {
 
     def "should delete a skill in links to people"() {
         given:
-        SkillService skillService = new SkillService(skillDao)
+        SkillService skillService = new SkillServiceImpl(skillDao)
         Integer idPerson = 1
         Integer id = 1
 
@@ -112,7 +113,7 @@ class SkillServiceTest extends Specification {
     }
     def "should delete a skill and its links to people"() {
         given:
-        SkillService skillService = new SkillService(skillDao)
+        SkillService skillService = new SkillServiceImpl(skillDao)
         Integer idPerson = 1
         Integer id = 1
 

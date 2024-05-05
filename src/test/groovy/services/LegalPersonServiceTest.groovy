@@ -1,10 +1,18 @@
 package services
 
+import org.example.dao.AddressDao
+import org.example.dao.LegalPersonDao
+import org.example.dao.NaturalPersonDao
+import org.example.dao.PersonDao
+import org.example.dao.impl.AddressDaoImpl
+import org.example.dao.impl.LegalPersonDaoImpl
+import org.example.dao.impl.PersonDaoImpl
 import org.example.entity.AddressEntity
 import org.example.entity.LegalPersonEntity
 import org.example.entity.NaturalPersonEntity
 import org.example.services.LegalPersonService
 import org.example.services.NaturalPersonService
+import org.example.services.impl.LegalPersonServiceImpl
 import spock.lang.AutoCleanup
 import spock.lang.Specification
 import utils.DBTest
@@ -16,14 +24,22 @@ class LegalPersonServiceTest extends Specification {
     @AutoCleanup
     Connection conn
 
+    LegalPersonDao legalPersonDao
+    AddressDao addressDao
+    PersonDao personDao
+
     def setup() {
         conn = DBTest.getConnection()
+        legalPersonDao = new LegalPersonDaoImpl(conn)
+        addressDao = new AddressDaoImpl(conn)
+        personDao = new PersonDaoImpl(conn)
     }
 
 
     def "should add and retrieve a legal person"() {
         given:
-        LegalPersonService legalPersonService = new LegalPersonService(conn)
+        LegalPersonService legalPersonService = new LegalPersonServiceImpl(legalPersonDao,
+                addressDao, personDao)
         def address = new AddressEntity("Country", "State", "12345678")
         def person = new LegalPersonEntity(
                 "John Enterprise",
@@ -54,7 +70,8 @@ class LegalPersonServiceTest extends Specification {
 
     def "should update a legal person"() {
         given:
-        LegalPersonService legalPersonService = new LegalPersonService(conn)
+        LegalPersonService legalPersonService = new LegalPersonServiceImpl(legalPersonDao,
+                addressDao, personDao)
         def address = new AddressEntity("Country", "State", "12345678")
         def person = new LegalPersonEntity(
                 "John Enterprise",
@@ -92,7 +109,8 @@ class LegalPersonServiceTest extends Specification {
 
     def "should delete a legal person"() {
         given:
-        LegalPersonService legalPersonService = new LegalPersonService(conn)
+        LegalPersonService legalPersonService = new LegalPersonServiceImpl(legalPersonDao,
+                addressDao, personDao)
         def address = new AddressEntity("Country", "State", "12345678")
         def person = new LegalPersonEntity(
                 "John Enterprise",

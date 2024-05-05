@@ -2,10 +2,11 @@ package org.example.ui
 
 import org.example.config.Database
 import org.example.entity.SkillEntity
+import org.example.factorys.ServiceFactory
 import org.example.services.SkillService
 
 class SkillsUI {
-    private static SkillService skillService = new SkillService(Database.conn)
+    private static SkillService skillService = ServiceFactory.createSkill()
 
     void read() {
         println """

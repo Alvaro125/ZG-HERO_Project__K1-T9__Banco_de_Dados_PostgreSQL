@@ -62,7 +62,7 @@ class JobEntity {
         return """#$id
 Nome da Vaga: $name
 Descrição da Vaga: $description
-Empresa: ${person.name}(CNPJ:${person.cnpj})
+Empresa: ${person.getName()}(CNPJ:${person.getCnpj()})
 Endereço:
     $local
 """

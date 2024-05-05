@@ -1,36 +1,34 @@
 package org.example.dao.impl
 
-import org.example.dao.LoginDao
-import org.example.dao.NaturalPersonDao
-import org.example.dto.LoginDto
+import org.example.dao.JobDao
 import org.example.entity.AddressEntity
+import org.example.entity.JobEntity
+import org.example.entity.LegalPersonEntity
 import org.example.entity.NaturalPersonEntity
 import org.example.entity.SkillEntity
-import org.example.services.SkillService
 
 import java.sql.Connection
 import java.sql.PreparedStatement
 import java.sql.ResultSet
 import java.sql.SQLException
-import java.sql.Statement
 
-class NaturalPersonDaoImpl implements NaturalPersonDao {
+class JobDaoImpl implements JobDao{
     private Connection db
-    NaturalPersonDaoImpl(Connection db){
+    JobDaoImpl(Connection db){
         this.db = db
     }
 
     @Override
-    List<NaturalPersonEntity> getAll() {
+    List<JobEntity> getAll() {
         String sql = sqlQueryGetAll()
         ResultSet result = null;
         PreparedStatement command = null
-        ArrayList<NaturalPersonEntity> list = new ArrayList();
+        ArrayList<JobEntity> list = new ArrayList();
         try {
             command = db.prepareStatement(sql);
             result = command.executeQuery();
             while (result.next()) {
-                list.add(createNaturalPersonEntity(result))
+                list.add(createJobEntity(result))
             }
         } catch (SQLException excecao_sql) {
             excecao_sql.printStackTrace()
@@ -40,17 +38,43 @@ class NaturalPersonDaoImpl implements NaturalPersonDao {
         return list
     }
     private String sqlQueryGetAll(){
-        return "SELECT np.cpf,np.age,p.email,p.description,p.password,p.name,p.id, " +
-                "ad.country, ad.state, ad.cep, p.address FROM naturalpeople np " +
-                "INNER JOIN people p ON np.\"idPerson\" = p.id " +
-                "INNER JOIN address ad " +
-                "ON ad.id = p.address;"
+        return """SELECT jobs.id, jobs."idLegalPerson" ,jobs.name,jobs.description,
+jobs.local,address.country,address.state,address.cep FROM jobs
+INNER JOIN address
+ON address.id = jobs.local; """
     }
 
     @Override
-    NaturalPersonEntity getById(Integer id) {
+    List<JobEntity> getByIdPerson(Integer idPerson) {
+        String sql = sqlQueryGetByIdPerson()
+        ResultSet result = null;
+        PreparedStatement command = null
+        ArrayList<JobEntity> list = new ArrayList();
+        try {
+            command = db.prepareStatement(sql);
+            command.setInt(1, idPerson)
+            result = command.executeQuery();
+            while (result.next()) {
+                list.add(createJobEntity(result))
+            }
+        } catch (SQLException exception_sql) {
+            exception_sql.printStackTrace()
+        } finally {
+            closeResultSetAndStatement(result, command)
+        }
+        return list
+    }
+    private String sqlQueryGetByIdPerson(){
+        return """SELECT jobs.id, jobs."idLegalPerson" ,jobs.name,jobs.description,
+jobs."local",address.country,address.state,address.cep FROM jobs
+INNER JOIN address
+ON address.id = jobs."local" WHERE jobs."idLegalPerson" = ?; """
+    }
+
+    @Override
+    JobEntity getById(Integer id) {
         String sql = sqlQueryGetById()
-        NaturalPersonEntity person = null
+        JobEntity job = null
         ResultSet result = null;
         PreparedStatement command = null
         try {
@@ -58,36 +82,33 @@ class NaturalPersonDaoImpl implements NaturalPersonDao {
             command.setInt(1, id)
             result = command.executeQuery()
             if (result != null && result.next()) {
-                person = createNaturalPersonEntity(result)
+                job = createJobEntity(result)
             }
         } catch (SQLException excecao_sql) {
             excecao_sql.printStackTrace()
         } finally {
             closeResultSetAndStatement(result, command)
         }
-        return person
+        return job
     }
     private String sqlQueryGetById(){
-        return """
-SELECT np.cpf, np.age,p.email,p.description,p.password,p.name,p.id,p.address,
-ad.country, ad.state, ad.cep 
-FROM naturalpeople np 
-INNER JOIN people p 
-ON np."idPerson" = p.id 
-INNER JOIN address ad 
-ON ad.id = p.address WHERE p.id= ? LIMIT 1;"""
+        return """SELECT jobs.id, jobs.idLegalPerson ,jobs.name,jobs.description,
+jobs.local,address.country,address.state,address.cep FROM jobs
+INNER JOIN address
+ON address.id = jobs.local 
+WHERE jobs.id=? LIMIT 1;"""
     }
 
     @Override
-    void updateById(NaturalPersonEntity person) {
+    void updateById(JobEntity job) {
         ResultSet result = null
         PreparedStatement command = null
         try {
             String sql = sqlUpdate()
             command = db.prepareStatement(sql)
-            command.setString(1, person.cpf);
-            command.setInt(2, person.age);
-            command.setInt(3, person.id);
+            command.setString(1, job.name);
+            command.setString(2, job.description);
+            command.setInt(3, job.id);
             command.executeUpdate();
         } catch (SQLException excecao_sql) {
             excecao_sql.printStackTrace()
@@ -96,33 +117,31 @@ ON ad.id = p.address WHERE p.id= ? LIMIT 1;"""
         }
     }
     private String sqlUpdate(){
-        return """
-UPDATE naturalpeople 
-SET cpf = ? , age = ? 
-WHERE idPerson = ? ;"""
+        return "UPDATE jobs SET name = ?, description = ? WHERE id = ?;"
     }
 
     @Override
-    NaturalPersonEntity create(NaturalPersonEntity person) {
-        NaturalPersonEntity newPerson = person
+    JobEntity create(JobEntity job) {
+        JobEntity newJob = job
         ResultSet result = null
         PreparedStatement command = null
         try {
             String sql = sqlCreate()
             command = db.prepareStatement(sql)
-            command.setInt(1, newPerson.id)
-            command.setString(2, newPerson.cpf)
-            command.setInt(3, newPerson.age)
+            command.setString(1, newJob.name);
+            command.setString(2, newJob.description);
+            command.setInt(3, newJob.local.id);
+            command.setInt(4, newJob.person.id);
             command.executeUpdate()
         } catch (SQLException excecao_sql) {
             excecao_sql.printStackTrace()
         } finally {
             closeResultSetAndStatement(result, command)
         }
-        return newPerson
+        return newJob
     }
     private String sqlCreate(){
-        return "INSERT INTO naturalpeople (idPerson, cpf, age) VALUES (?, ?, ?)"
+        return "INSERT INTO jobs (name, description, local, \"idLegalPerson\") VALUES (?, ?, ?, ?)"
     }
 
     @Override
@@ -132,7 +151,7 @@ WHERE idPerson = ? ;"""
         try {
             String sql = sqlDelete()
             command = db.prepareStatement(sql)
-            command.setInt(1, id)
+            command.setInt(1, id);
             command.executeUpdate();
         } catch (SQLException excecao_sql) {
             excecao_sql.printStackTrace()
@@ -141,56 +160,23 @@ WHERE idPerson = ? ;"""
         }
     }
     private String sqlDelete(){
-        return """DELETE FROM naturalpeople WHERE idPerson = ?;"""
+        return "DELETE FROM jobs WHERE id = ?;"
     }
 
-    @Override
-    NaturalPersonEntity loginPerson(LoginDto req) {
-        String sql = sqlQueryGetByEmailAndPassword()
-        NaturalPersonEntity person = null
-        ResultSet result = null;
-        PreparedStatement command = null
-        try {
-            command = db.prepareStatement(sql)
-            command.setString(1, req.email)
-            command.setString(2, req.senha)
-            result = command.executeQuery()
-            if (result != null && result.next()) {
-                person = createNaturalPersonEntity(result)
-            }
-        } catch (SQLException excecao_sql) {
-            excecao_sql.printStackTrace()
-        } finally {
-            closeResultSetAndStatement(result, command)
-        }
-        return person
-    }
-    private String sqlQueryGetByEmailAndPassword(){
-        return """
-SELECT np.cpf, np.age,p.email,p.description,p.password,p.name,p.id,p.address,
-ad.country, ad.state, ad.cep 
-FROM naturalpeople np 
-INNER JOIN people p 
-ON np."idPerson" = p.id 
-INNER JOIN address ad 
-ON ad.id = p.address WHERE p.email=? AND p.password=? LIMIT 1;"""
-    }
-
-    private NaturalPersonEntity createNaturalPersonEntity(ResultSet result) throws SQLException {
+    private JobEntity createJobEntity(ResultSet result) throws SQLException {
         Integer id = result.getInt("id")
-        String email = result.getString("email")
+        Integer idPerson = result.getInt("idLegalPerson")
+        Integer local = result.getInt("local")
         String name = result.getString("name")
-        String password = result.getString("password")
         String description = result.getString("description")
-        String cpf = result.getString("cpf")
-        Integer age = result.getInt("age")
-        Integer idAddress = result.getInt("address")
         String country = result.getString("country")
         String cep = result.getString("cep")
         String state = result.getString("state")
-        return new NaturalPersonEntity(name, email, password, description,
-                new AddressEntity(country,state,cep, idAddress),
-                cpf,age,id,[])
+        AddressEntity address = new AddressEntity(country,state,cep)
+        address.setId(local)
+        LegalPersonEntity legalPerson = new LegalPersonEntity()
+        legalPerson.setId(idPerson)
+        return new JobEntity(name, description, address, legalPerson,id)
     }
 
     private void closeResultSetAndStatement(ResultSet result, PreparedStatement statement) {

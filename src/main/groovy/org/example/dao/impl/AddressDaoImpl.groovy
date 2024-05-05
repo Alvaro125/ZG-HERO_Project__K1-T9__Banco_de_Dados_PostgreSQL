@@ -17,7 +17,7 @@ class AddressDaoImpl implements AddressDao{
     }
 
     @Override
-    def create(AddressEntity address) {
+    AddressEntity create(AddressEntity address) {
         AddressEntity newAddress = address
         ResultSet result = null
         PreparedStatement command = null
@@ -50,7 +50,7 @@ class AddressDaoImpl implements AddressDao{
     }
 
     @Override
-    def updateById(AddressEntity address) {
+    void updateById(AddressEntity address) {
         ResultSet result = null
         PreparedStatement command = null
         try {
@@ -75,7 +75,7 @@ WHERE id = ?;"""
     }
 
     @Override
-    def deleteById(Integer id) {
+    void deleteById(Integer id) {
         ResultSet result = null
         PreparedStatement command = null
         try {
@@ -98,16 +98,11 @@ WHERE id = ?;"""
             if (result != null) {
                 result.close()
             }
-        } catch (SQLException exceção_sql) {
-            exceção_sql.printStackTrace()
-        } finally {
-            try {
-                if (statement != null) {
-                    statement.close()
-                }
-            } catch (SQLException exceção_sql) {
-                exceção_sql.printStackTrace()
+            if (statement != null) {
+                statement.close()
             }
+        } catch (SQLException excecao_sql) {
+            excecao_sql.printStackTrace()
         }
     }
 }

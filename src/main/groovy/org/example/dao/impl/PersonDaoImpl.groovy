@@ -52,7 +52,7 @@ class PersonDaoImpl implements PersonDao{
     }
 
     @Override
-    def deleteById(Integer id) {
+    void deleteById(Integer id) {
         ResultSet result = null
         PreparedStatement command = null
         try {
@@ -71,7 +71,7 @@ class PersonDaoImpl implements PersonDao{
     }
 
     @Override
-    def updateById(PersonEntity person) {
+    void updateById(PersonEntity person) {
         ResultSet result = null
         PreparedStatement command = null
         try {

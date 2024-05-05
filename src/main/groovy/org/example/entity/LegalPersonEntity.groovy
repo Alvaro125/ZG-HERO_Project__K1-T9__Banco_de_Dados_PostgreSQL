@@ -2,12 +2,14 @@ package org.example.entity
 
 class LegalPersonEntity extends PersonEntity {
     String cnpj
-
     LegalPersonEntity(
             String nome, String email, String password, String description, AddressEntity address,
             String cnpj, Integer id, List<SkillEntity> skills=[]) {
         super(nome, email, password, description, address, id, skills)
         this.cnpj = cnpj
+    }
+    LegalPersonEntity(){
+        super()
     }
 
     String getCnpj() {

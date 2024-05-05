@@ -4,9 +4,9 @@ import org.example.entity.AddressEntity
 
 interface AddressDao {
 
-    def create(AddressEntity address)
+    AddressEntity create(AddressEntity address)
     AddressEntity getById(Integer id)
-    def updateById(AddressEntity address)
-    def deleteById(Integer id)
+    void updateById(AddressEntity address)
+    void deleteById(Integer id)
 
 }

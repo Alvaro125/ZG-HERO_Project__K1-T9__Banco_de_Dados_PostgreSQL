@@ -38,7 +38,7 @@ class SkillDaoImpl implements SkillDao{
     }
     private String sqlQueryGetAll(){
         return """
-SELECT * FROM public.skills
+SELECT * FROM skills
 ORDER BY id ASC;"""
     }
 
@@ -69,11 +69,11 @@ ORDER BY id ASC;"""
     }
 
     @Override
-    def insertToPerson(SkillEntity skill, Integer id) {
+    List<SkillEntity> insertToPerson(SkillEntity skill, Integer id) {
         String sql = sqlInsertByPerson()
         ResultSet result = null;
         PreparedStatement command = null
-        ArrayList<NaturalPersonEntity> list = new ArrayList();
+        ArrayList<SkillEntity> list = new ArrayList();
         try {
             command = db.prepareStatement(sql)
             command.setInt(1, skill.getId());
@@ -136,13 +136,13 @@ ORDER BY id ASC;"""
     }
     private String sqlQueryGetByIdPerson(){
         return """
-SELECT sk.title, sk.description, sk.id FROM public.skills_people sp
+SELECT sk.title, sk.description, sk.id FROM skills_people sp
 INNER JOIN skills sk ON sk.id = sp.skills_id
 WHERE sp.people_id = ?;"""
     }
 
     @Override
-    def updateById(SkillEntity skill) {
+    void updateById(SkillEntity skill) {
         ResultSet result = null
         PreparedStatement command = null
         try {
@@ -163,7 +163,7 @@ WHERE sp.people_id = ?;"""
     }
 
     @Override
-    def deleteById(Integer id) {
+    void deleteById(Integer id) {
         ResultSet result = null
         PreparedStatement command = null
         try {
@@ -182,7 +182,7 @@ WHERE sp.people_id = ?;"""
     }
 
     @Override
-    def deleteByIdPerson(Integer idPerson){
+    void deleteByIdPerson(Integer idPerson){
         ResultSet result = null
         PreparedStatement command = null
         try {

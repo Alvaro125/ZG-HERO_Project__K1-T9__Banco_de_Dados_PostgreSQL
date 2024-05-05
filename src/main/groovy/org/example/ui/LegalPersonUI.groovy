@@ -4,12 +4,13 @@ import org.example.config.Database
 import org.example.entity.AddressEntity
 import org.example.entity.LegalPersonEntity
 import org.example.entity.SkillEntity
+import org.example.factorys.ServiceFactory
 import org.example.services.LegalPersonService
 import org.example.services.SkillService
 
 class LegalPersonUI {
-    private static LegalPersonService legalPersonService = new LegalPersonService(Database.conn)
-    private static SkillService skillService = new SkillService(Database.conn)
+    private static LegalPersonService legalPersonService = ServiceFactory.createNaturalPerson()
+    private static SkillService skillService = ServiceFactory.createSkill()
 
     void read() {
         println """

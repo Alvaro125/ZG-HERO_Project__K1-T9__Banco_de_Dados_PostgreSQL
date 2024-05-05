@@ -1,36 +1,33 @@
 package org.example.dao.impl
 
-import org.example.dao.LoginDao
-import org.example.dao.NaturalPersonDao
+import org.example.dao.LegalPersonDao
 import org.example.dto.LoginDto
 import org.example.entity.AddressEntity
+import org.example.entity.LegalPersonEntity
 import org.example.entity.NaturalPersonEntity
-import org.example.entity.SkillEntity
-import org.example.services.SkillService
 
 import java.sql.Connection
 import java.sql.PreparedStatement
 import java.sql.ResultSet
 import java.sql.SQLException
-import java.sql.Statement
 
-class NaturalPersonDaoImpl implements NaturalPersonDao {
+class LegalPersonDaoImpl implements LegalPersonDao{
     private Connection db
-    NaturalPersonDaoImpl(Connection db){
+    LegalPersonDaoImpl(Connection db){
         this.db = db
     }
 
     @Override
-    List<NaturalPersonEntity> getAll() {
+    List<LegalPersonEntity> getAll() {
         String sql = sqlQueryGetAll()
         ResultSet result = null;
         PreparedStatement command = null
-        ArrayList<NaturalPersonEntity> list = new ArrayList();
+        ArrayList<LegalPersonEntity> list = new ArrayList();
         try {
             command = db.prepareStatement(sql);
             result = command.executeQuery();
             while (result.next()) {
-                list.add(createNaturalPersonEntity(result))
+                list.add(createLegalPersonEntity(result))
             }
         } catch (SQLException excecao_sql) {
             excecao_sql.printStackTrace()
@@ -40,79 +37,25 @@ class NaturalPersonDaoImpl implements NaturalPersonDao {
         return list
     }
     private String sqlQueryGetAll(){
-        return "SELECT np.cpf,np.age,p.email,p.description,p.password,p.name,p.id, " +
-                "ad.country, ad.state, ad.cep, p.address FROM naturalpeople np " +
-                "INNER JOIN people p ON np.\"idPerson\" = p.id " +
-                "INNER JOIN address ad " +
-                "ON ad.id = p.address;"
-    }
-
-    @Override
-    NaturalPersonEntity getById(Integer id) {
-        String sql = sqlQueryGetById()
-        NaturalPersonEntity person = null
-        ResultSet result = null;
-        PreparedStatement command = null
-        try {
-            command = db.prepareStatement(sql)
-            command.setInt(1, id)
-            result = command.executeQuery()
-            if (result != null && result.next()) {
-                person = createNaturalPersonEntity(result)
-            }
-        } catch (SQLException excecao_sql) {
-            excecao_sql.printStackTrace()
-        } finally {
-            closeResultSetAndStatement(result, command)
-        }
-        return person
-    }
-    private String sqlQueryGetById(){
-        return """
-SELECT np.cpf, np.age,p.email,p.description,p.password,p.name,p.id,p.address,
-ad.country, ad.state, ad.cep 
-FROM naturalpeople np 
+        return """SELECT lp.cnpj,p.email,p.description,p.password,p.name,p.id,
+ad.country, ad.state, ad.cep, p.address
+FROM legalpeople lp 
 INNER JOIN people p 
-ON np."idPerson" = p.id 
+ON lp."idPerson" = p.id 
 INNER JOIN address ad 
-ON ad.id = p.address WHERE p.id= ? LIMIT 1;"""
+ON ad.id = p.address;"""
     }
 
     @Override
-    void updateById(NaturalPersonEntity person) {
-        ResultSet result = null
-        PreparedStatement command = null
-        try {
-            String sql = sqlUpdate()
-            command = db.prepareStatement(sql)
-            command.setString(1, person.cpf);
-            command.setInt(2, person.age);
-            command.setInt(3, person.id);
-            command.executeUpdate();
-        } catch (SQLException excecao_sql) {
-            excecao_sql.printStackTrace()
-        } finally {
-            closeResultSetAndStatement(result, command)
-        }
-    }
-    private String sqlUpdate(){
-        return """
-UPDATE naturalpeople 
-SET cpf = ? , age = ? 
-WHERE idPerson = ? ;"""
-    }
-
-    @Override
-    NaturalPersonEntity create(NaturalPersonEntity person) {
-        NaturalPersonEntity newPerson = person
+    LegalPersonEntity create(LegalPersonEntity person) {
+        LegalPersonEntity newPerson = person
         ResultSet result = null
         PreparedStatement command = null
         try {
             String sql = sqlCreate()
             command = db.prepareStatement(sql)
             command.setInt(1, newPerson.id)
-            command.setString(2, newPerson.cpf)
-            command.setInt(3, newPerson.age)
+            command.setString(2, newPerson.cnpj)
             command.executeUpdate()
         } catch (SQLException excecao_sql) {
             excecao_sql.printStackTrace()
@@ -122,7 +65,57 @@ WHERE idPerson = ? ;"""
         return newPerson
     }
     private String sqlCreate(){
-        return "INSERT INTO naturalpeople (idPerson, cpf, age) VALUES (?, ?, ?)"
+        return "INSERT INTO legalpeople (idPerson, cnpj) VALUES (?, ?);"
+    }
+
+    @Override
+    LegalPersonEntity getById(Integer id) {
+        String sql = sqlQueryGetById()
+        LegalPersonEntity person = null
+        ResultSet result = null;
+        PreparedStatement command = null
+        try {
+            command = db.prepareStatement(sql)
+            command.setInt(1, id)
+            result = command.executeQuery()
+            if (result != null && result.next()) {
+                person = createLegalPersonEntity(result)
+            }
+        } catch (SQLException excecao_sql) {
+            excecao_sql.printStackTrace()
+        } finally {
+            closeResultSetAndStatement(result, command)
+        }
+        return person
+    }
+    private String sqlQueryGetById(){
+        return """SELECT lp.cnpj,p.email,p.description,p.password,p.name,p.id,p.address,
+ad.country, ad.state, ad.cep 
+FROM legalpeople lp 
+INNER JOIN people p 
+ON lp."idPerson" = p.id 
+INNER JOIN address ad 
+ON ad.id = p.address WHERE p.id= ? LIMIT 1;"""
+    }
+
+    @Override
+    void updateById(LegalPersonEntity person) {
+        ResultSet result = null
+        PreparedStatement command = null
+        try {
+            String sql = sqlUpdate()
+            command = db.prepareStatement(sql)
+            command.setString(1, person.cnpj);
+            command.setInt(2, person.id);
+            command.executeUpdate();
+        } catch (SQLException excecao_sql) {
+            excecao_sql.printStackTrace()
+        } finally {
+            closeResultSetAndStatement(result, command)
+        }
+    }
+    private String sqlUpdate(){
+        "UPDATE legalpeople SET cnpj = ? WHERE \"idPerson\" = ? ;"
     }
 
     @Override
@@ -141,11 +134,11 @@ WHERE idPerson = ? ;"""
         }
     }
     private String sqlDelete(){
-        return """DELETE FROM naturalpeople WHERE idPerson = ?;"""
+        return """DELETE FROM legalpeople WHERE idPerson = ?;"""
     }
 
     @Override
-    NaturalPersonEntity loginPerson(LoginDto req) {
+    LegalPersonEntity loginPerson(LoginDto req) {
         String sql = sqlQueryGetByEmailAndPassword()
         NaturalPersonEntity person = null
         ResultSet result = null;
@@ -166,31 +159,29 @@ WHERE idPerson = ? ;"""
         return person
     }
     private String sqlQueryGetByEmailAndPassword(){
-        return """
-SELECT np.cpf, np.age,p.email,p.description,p.password,p.name,p.id,p.address,
+        return """SELECT lp.cnpj,p.email,p.description,p.password,p.name,p.id,p.address,
 ad.country, ad.state, ad.cep 
-FROM naturalpeople np 
+FROM legalpeople lp 
 INNER JOIN people p 
-ON np."idPerson" = p.id 
+ON lp."idPerson" = p.id 
 INNER JOIN address ad 
 ON ad.id = p.address WHERE p.email=? AND p.password=? LIMIT 1;"""
     }
 
-    private NaturalPersonEntity createNaturalPersonEntity(ResultSet result) throws SQLException {
+    private LegalPersonEntity createLegalPersonEntity(ResultSet result) throws SQLException {
         Integer id = result.getInt("id")
         String email = result.getString("email")
         String name = result.getString("name")
         String password = result.getString("password")
         String description = result.getString("description")
-        String cpf = result.getString("cpf")
-        Integer age = result.getInt("age")
+        String cnpj = result.getString("cnpj")
         Integer idAddress = result.getInt("address")
         String country = result.getString("country")
         String cep = result.getString("cep")
         String state = result.getString("state")
-        return new NaturalPersonEntity(name, email, password, description,
+        return new LegalPersonEntity(name, email, password, description,
                 new AddressEntity(country,state,cep, idAddress),
-                cpf,age,id,[])
+                cnpj,id,[])
     }
 
     private void closeResultSetAndStatement(ResultSet result, PreparedStatement statement) {
