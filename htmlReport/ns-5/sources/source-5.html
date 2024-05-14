@@ -1,0 +1,234 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > Terminal</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">org.example.ui</a>
+</div>
+
+<h1>Coverage Summary for Class: Terminal (org.example.ui)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Terminal</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/36)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/62)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package org.example.ui
+&nbsp;
+&nbsp;import org.example.entity.AddressEntity
+&nbsp;import org.example.entity.NaturalPersonEntity
+&nbsp;import org.example.entity.LegalPersonEntity
+&nbsp;import org.example.services.LegalPersonService
+&nbsp;import org.example.services.NaturalPersonService
+&nbsp;import org.example.services.SkillService
+&nbsp;
+&nbsp;class Terminal {
+&nbsp;    static NaturalPersonService naturalPersonService
+&nbsp;    static LegalPersonUI legalPersonUI
+&nbsp;    static NaturalPersonUI naturalPersonUI
+&nbsp;    static SkillsUI skillsUI
+&nbsp;    static JobsUI jobsUI
+&nbsp;
+<b class="nc">&nbsp;    Terminal(){</b>
+<b class="nc">&nbsp;        naturalPersonUI = new NaturalPersonUI()</b>
+<b class="nc">&nbsp;        legalPersonUI = new LegalPersonUI()</b>
+<b class="nc">&nbsp;        skillsUI = new SkillsUI()</b>
+<b class="nc">&nbsp;        jobsUI = new JobsUI()</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    void run() {
+<b class="nc">&nbsp;        def option = &quot;&quot;</b>
+<b class="nc">&nbsp;        while (!option.equals(&quot;0&quot;)){</b>
+<b class="nc">&nbsp;            BufferedReader br = new BufferedReader(new InputStreamReader(System.in))</b>
+<b class="nc">&nbsp;            println &quot;&quot;&quot;</b>
+&nbsp;        #####################################
+&nbsp;        #PAINEL                             #
+&nbsp;        #####################################
+&nbsp;        # 0-Sair                            #
+&nbsp;        # 1-Listar Empresas                 #
+&nbsp;        # 2-Adicionar Empresa               #
+&nbsp;        # 3-Atualizar Empresa               #
+&nbsp;        # 4-Deletar Empresa                 #
+&nbsp;        # 5-Listar Candidatos               #
+&nbsp;        # 6-Adicionar Candidato             #
+&nbsp;        # 7-Atualizar Candidato             #
+&nbsp;        # 8-Deletar Candidato               #
+&nbsp;        # 9-Listar Competencias             #
+&nbsp;        #10-Adicionar Competencia           #
+&nbsp;        #11-Atualizar Competencia           #
+&nbsp;        #12-Deletar Competencia             #
+&nbsp;        #13-Listar Empregos                 #
+&nbsp;        #14-Adicionar Emprego               #
+&nbsp;        #15-Atualizar Emprego               #
+&nbsp;        #16-Deletar Emprego                 #
+&nbsp;        #####################################
+&nbsp;        &quot;&quot;&quot;
+<b class="nc">&nbsp;            print &#39;Opção:&#39;</b>
+<b class="nc">&nbsp;            option = br.readLine()</b>
+<b class="nc">&nbsp;            switch (option) {</b>
+<b class="nc">&nbsp;                case &quot;0&quot;:</b>
+<b class="nc">&nbsp;                    println &quot;&quot;&quot;</b>
+&nbsp;                ░▄▀█░█▀▄░█▀▀░█░█░█▀
+&nbsp;                ░█▀█░█▄▀░██▄░█▄█░▄█
+&nbsp;                ░░░░░░░░░░░░░░░░░░░░
+&nbsp;                &quot;&quot;&quot;
+&nbsp;                    return
+<b class="nc">&nbsp;                case &quot;1&quot;:</b>
+<b class="nc">&nbsp;                    legalPersonUI.read()</b>
+<b class="nc">&nbsp;                    break</b>
+<b class="nc">&nbsp;                case &quot;2&quot;:</b>
+<b class="nc">&nbsp;                    legalPersonUI.create(br)</b>
+<b class="nc">&nbsp;                    break</b>
+<b class="nc">&nbsp;                case &quot;3&quot;:</b>
+<b class="nc">&nbsp;                    legalPersonUI.update(br)</b>
+<b class="nc">&nbsp;                    break</b>
+<b class="nc">&nbsp;                case &quot;4&quot;:</b>
+<b class="nc">&nbsp;                    legalPersonUI.delete(br)</b>
+<b class="nc">&nbsp;                    break</b>
+<b class="nc">&nbsp;                case &quot;5&quot;:</b>
+<b class="nc">&nbsp;                    naturalPersonUI.read()</b>
+<b class="nc">&nbsp;                    break</b>
+<b class="nc">&nbsp;                case &quot;6&quot;:</b>
+<b class="nc">&nbsp;                    naturalPersonUI.create(br)</b>
+<b class="nc">&nbsp;                    break</b>
+<b class="nc">&nbsp;                case &quot;7&quot;:</b>
+<b class="nc">&nbsp;                    naturalPersonUI.update(br)</b>
+<b class="nc">&nbsp;                    break</b>
+<b class="nc">&nbsp;                case &quot;8&quot;:</b>
+<b class="nc">&nbsp;                    naturalPersonUI.delete(br)</b>
+<b class="nc">&nbsp;                    break</b>
+<b class="nc">&nbsp;                case &quot;9&quot;:</b>
+<b class="nc">&nbsp;                    skillsUI.read()</b>
+<b class="nc">&nbsp;                    break</b>
+<b class="nc">&nbsp;                case &quot;10&quot;:</b>
+<b class="nc">&nbsp;                    skillsUI.create(br)</b>
+<b class="nc">&nbsp;                    break</b>
+<b class="nc">&nbsp;                case &quot;11&quot;:</b>
+<b class="nc">&nbsp;                    skillsUI.update(br)</b>
+<b class="nc">&nbsp;                    break</b>
+<b class="nc">&nbsp;                case &quot;12&quot;:</b>
+<b class="nc">&nbsp;                    skillsUI.delete(br)</b>
+<b class="nc">&nbsp;                    break</b>
+<b class="nc">&nbsp;                case &quot;13&quot;:</b>
+<b class="nc">&nbsp;                    jobsUI.read()</b>
+<b class="nc">&nbsp;                    break</b>
+<b class="nc">&nbsp;                case &quot;14&quot;:</b>
+<b class="nc">&nbsp;                    jobsUI.create(br)</b>
+<b class="nc">&nbsp;                    break</b>
+<b class="nc">&nbsp;                case &quot;15&quot;:</b>
+<b class="nc">&nbsp;                    jobsUI.update(br)</b>
+<b class="nc">&nbsp;                    break</b>
+<b class="nc">&nbsp;                case &quot;16&quot;:</b>
+<b class="nc">&nbsp;                    jobsUI.delete(br)</b>
+&nbsp;                    break
+&nbsp;                default:
+<b class="nc">&nbsp;                    println &quot;&quot;&quot;</b>
+&nbsp;                ░█▀▀░█▀█░█▀█░█▀█░█▀█
+&nbsp;                ░██▄░█▀▄░█▀▄░█▄█░█▀▄
+&nbsp;                ░░░░░░░░░░░░░░░░░░░░
+&nbsp;                &quot;&quot;&quot;
+&nbsp;            }
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-04-24 22:26</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,197 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > PersonEntity</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">org.example.entity</a>
+</div>
+
+<h1>Coverage Summary for Class: PersonEntity (org.example.entity)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">PersonEntity</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/17)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/26)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package org.example.entity
+&nbsp;
+&nbsp;abstract class PersonEntity {
+&nbsp;    Integer id
+&nbsp;    String name
+&nbsp;    String email
+&nbsp;    String description
+&nbsp;    AddressEntity address
+&nbsp;    String password
+<b class="nc">&nbsp;    List&lt;SkillEntity&gt; skills = []</b>
+&nbsp;
+&nbsp;    Integer getId() {
+<b class="nc">&nbsp;        return id</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    void setId(Integer id) {
+<b class="nc">&nbsp;        this.id = id</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    String getPassword() {
+<b class="nc">&nbsp;        return password</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    void setPassword(String password) {
+<b class="nc">&nbsp;        this.password = password</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    PersonEntity(String name, String email, String password,
+<b class="nc">&nbsp;                 String description, AddressEntity address,Integer id, List&lt;SkillEntity&gt; skills=[]) {</b>
+<b class="nc">&nbsp;        this.id = id</b>
+<b class="nc">&nbsp;        this.name = name</b>
+<b class="nc">&nbsp;        this.email = email</b>
+<b class="nc">&nbsp;        this.password = password</b>
+<b class="nc">&nbsp;        this.description = description</b>
+<b class="nc">&nbsp;        this.address = address</b>
+<b class="nc">&nbsp;        this.skills = skills</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    String getName() {
+<b class="nc">&nbsp;        return name</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    void setName(String name) {
+<b class="nc">&nbsp;        this.name = name</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    String getEmail() {
+<b class="nc">&nbsp;        return email</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    void setEmail(String email) {
+<b class="nc">&nbsp;        this.email = email</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    String getDescription() {
+<b class="nc">&nbsp;        return description</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    AddressEntity getAddress() {
+<b class="nc">&nbsp;        return address</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    void setAddress(AddressEntity address) {
+<b class="nc">&nbsp;        this.address = address</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    void setDescription(String description) {
+<b class="nc">&nbsp;        this.description = description</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    void setSkills(List&lt;SkillEntity&gt; skills) {
+<b class="nc">&nbsp;        this.skills = skills</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    List&lt;SkillEntity&gt; getSkills() {
+<b class="nc">&nbsp;        return this.skills</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    void addSkills(SkillEntity skill) {
+<b class="nc">&nbsp;        this.skills.add(skill)</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    @Override
+&nbsp;    String toString() {
+<b class="nc">&nbsp;        return &quot;&quot;&quot;$id#Nome: ${this.name}</b>
+&nbsp;Email: ${this.email}
+&nbsp;Descrição: ${this.description}
+&nbsp;Endereço: 
+&nbsp;    ${this.address}
+<b class="nc">&nbsp;Competencias: [${this.skills.join(&quot;\n\t&quot;)}]&quot;&quot;&quot;</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-04-24 22:26</div>
+</div>
+</body>
+</html>

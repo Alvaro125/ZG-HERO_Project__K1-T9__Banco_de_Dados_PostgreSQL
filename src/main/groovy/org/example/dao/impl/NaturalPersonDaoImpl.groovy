@@ -122,7 +122,7 @@ WHERE idPerson = ? ;"""
         return newPerson
     }
     private String sqlCreate(){
-        return "INSERT INTO naturalpeople (idPerson, cpf, age) VALUES (?, ?, ?)"
+        return "INSERT INTO naturalpeople (\"idPerson\", cpf, age) VALUES (?, ?, ?)"
     }
 
     @Override
@@ -141,7 +141,7 @@ WHERE idPerson = ? ;"""
         }
     }
     private String sqlDelete(){
-        return """DELETE FROM naturalpeople WHERE idPerson = ?;"""
+        return """DELETE FROM naturalpeople WHERE "idPerson" = ?;"""
     }
 
     @Override

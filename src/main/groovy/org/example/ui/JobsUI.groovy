@@ -12,7 +12,7 @@ import org.example.services.SkillService
 
 class JobsUI {
     private static SkillService skillService = ServiceFactory.createSkill()
-    private static JobsService jobsService = new JobsService(Database.conn)
+    private static JobsService jobsService = ServiceFactory.createJob()
     private static LegalPersonService legalPersonService = ServiceFactory.createLegalPerson()
 
     void read() {

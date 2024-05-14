@@ -1,0 +1,331 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > LegalPersonService</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">org.example.services</a>
+</div>
+
+<h1>Coverage Summary for Class: LegalPersonService (org.example.services)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">LegalPersonService</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/18)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/123)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package org.example.services
+&nbsp;
+&nbsp;import org.example.config.Database
+&nbsp;import org.example.entity.AddressEntity
+&nbsp;import org.example.entity.LegalPersonEntity
+&nbsp;import org.example.entity.NaturalPersonEntity
+&nbsp;import org.example.entity.PersonEntity
+&nbsp;import org.example.entity.SkillEntity
+&nbsp;import org.example.interfaces.IPerson
+&nbsp;
+&nbsp;import java.sql.Connection
+&nbsp;import java.sql.PreparedStatement
+&nbsp;import java.sql.ResultSet
+&nbsp;import java.sql.SQLException
+&nbsp;
+&nbsp;class LegalPersonService{
+&nbsp;
+&nbsp;    static Connection db
+&nbsp;    static SkillService skillService
+&nbsp;
+<b class="nc">&nbsp;    LegalPersonService(Connection db){</b>
+<b class="nc">&nbsp;        this.db = db</b>
+<b class="nc">&nbsp;        this.skillService = new SkillService(db)</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    List&lt;LegalPersonEntity&gt; listAll() {
+<b class="nc">&nbsp;        String sql = &quot;&quot;&quot;SELECT lp.cnpj,p.email,p.description,p.password,p.name,p.id,</b>
+&nbsp;ad.country, ad.state, ad.cep 
+&nbsp;FROM public.legalpeople lp 
+&nbsp;INNER JOIN public.people p 
+&nbsp;ON lp.&quot;idPerson&quot; = p.id 
+&nbsp;INNER JOIN public.address ad 
+&nbsp;ON ad.id = p.address;&quot;&quot;&quot;;
+<b class="nc">&nbsp;        ResultSet result = null;</b>
+<b class="nc">&nbsp;        ArrayList&lt;LegalPersonEntity&gt; list = new ArrayList();</b>
+&nbsp;        try {
+<b class="nc">&nbsp;            PreparedStatement comando = Database.conn.prepareStatement(sql);</b>
+<b class="nc">&nbsp;            result = comando.executeQuery();</b>
+<b class="nc">&nbsp;            while (result.next()) {</b>
+<b class="nc">&nbsp;                Integer id = result.getInt(&quot;id&quot;)</b>
+<b class="nc">&nbsp;                String email = result.getString(&quot;email&quot;)</b>
+<b class="nc">&nbsp;                String name = result.getString(&quot;name&quot;)</b>
+<b class="nc">&nbsp;                String password = result.getString(&quot;password&quot;)</b>
+<b class="nc">&nbsp;                String description = result.getString(&quot;description&quot;)</b>
+<b class="nc">&nbsp;                String cnpj = result.getString(&quot;cnpj&quot;)</b>
+<b class="nc">&nbsp;                String country = result.getString(&quot;country&quot;)</b>
+<b class="nc">&nbsp;                String cep = result.getString(&quot;cep&quot;)</b>
+<b class="nc">&nbsp;                String state = result.getString(&quot;state&quot;)</b>
+<b class="nc">&nbsp;                List&lt;SkillEntity&gt; skills = skillService.listSkillsByPerson(id)</b>
+<b class="nc">&nbsp;                list.add(new LegalPersonEntity(name, email, password, description,</b>
+<b class="nc">&nbsp;                        new AddressEntity(country,state,cep),</b>
+&nbsp;                cnpj,id,skills))
+&nbsp;            }
+<b class="nc">&nbsp;            result.close()</b>
+<b class="nc">&nbsp;            comando.close()</b>
+&nbsp;        } catch (SQLException exceção_sql) {
+<b class="nc">&nbsp;            exceção_sql.printStackTrace()</b>
+&nbsp;        }
+<b class="nc">&nbsp;        return list</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    LegalPersonEntity onebyId(Integer id) {
+<b class="nc">&nbsp;        String sql = &quot;&quot;&quot;SELECT lp.cnpj,p.email,p.description,p.password,p.name,p.id,p.address,</b>
+&nbsp;ad.country, ad.state, ad.cep 
+&nbsp;FROM public.legalpeople lp 
+&nbsp;INNER JOIN public.people p 
+&nbsp;ON lp.&quot;idPerson&quot; = p.id 
+&nbsp;INNER JOIN public.address ad 
+&nbsp;ON ad.id = p.address WHERE p.id= ? LIMIT 1;&quot;&quot;&quot;
+<b class="nc">&nbsp;        LegalPersonEntity person = null</b>
+&nbsp;        try {
+<b class="nc">&nbsp;            PreparedStatement command = Database.conn.prepareStatement(sql)</b>
+<b class="nc">&nbsp;            command.setInt(1, id)</b>
+<b class="nc">&nbsp;            ResultSet result = command.executeQuery()</b>
+<b class="nc">&nbsp;            if (result != null &amp;&amp; result.next()) {</b>
+<b class="nc">&nbsp;                String email = result.getString(&quot;email&quot;)</b>
+<b class="nc">&nbsp;                String name = result.getString(&quot;name&quot;)</b>
+<b class="nc">&nbsp;                String password = result.getString(&quot;password&quot;)</b>
+<b class="nc">&nbsp;                String description = result.getString(&quot;description&quot;)</b>
+<b class="nc">&nbsp;                String cnpj = result.getString(&quot;cnpj&quot;)</b>
+<b class="nc">&nbsp;                String country = result.getString(&quot;country&quot;)</b>
+<b class="nc">&nbsp;                String cep = result.getString(&quot;cep&quot;)</b>
+<b class="nc">&nbsp;                String state = result.getString(&quot;state&quot;)</b>
+<b class="nc">&nbsp;                Integer idAddress = result.getInt(&quot;address&quot;)</b>
+<b class="nc">&nbsp;                List&lt;SkillEntity&gt; skills = skillService.listSkillsByPerson(id)</b>
+<b class="nc">&nbsp;                AddressEntity address = new AddressEntity(country,state,cep)</b>
+<b class="nc">&nbsp;                address.setId(idAddress)</b>
+<b class="nc">&nbsp;                person = new LegalPersonEntity(name, email, password, description,</b>
+&nbsp;                        address,
+&nbsp;                        cnpj,id,skills)
+&nbsp;            }
+<b class="nc">&nbsp;            if (result != null) {</b>
+<b class="nc">&nbsp;                result.close()</b>
+&nbsp;            }
+<b class="nc">&nbsp;            if (command != null) {</b>
+<b class="nc">&nbsp;                command.close()</b>
+&nbsp;            }
+&nbsp;        } catch (SQLException exceção_sql) {
+<b class="nc">&nbsp;            exceção_sql.printStackTrace()</b>
+&nbsp;        }
+<b class="nc">&nbsp;        return person</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    def updateById(LegalPersonEntity person) {
+&nbsp;        try {
+<b class="nc">&nbsp;            String sql1 = &quot;&quot;&quot;</b>
+&nbsp;UPDATE people 
+&nbsp;SET name = ?, description = ?, email = ?, password = ?
+&nbsp;WHERE id = ?;&quot;&quot;&quot;;
+<b class="nc">&nbsp;            PreparedStatement command1 = db.prepareStatement(sql1);</b>
+<b class="nc">&nbsp;            command1.setString(1, person.name);</b>
+<b class="nc">&nbsp;            command1.setString(2, person.description);</b>
+<b class="nc">&nbsp;            command1.setString(3, person.email);</b>
+<b class="nc">&nbsp;            command1.setString(4, person.password);</b>
+<b class="nc">&nbsp;            command1.setInt(5, person.id);</b>
+<b class="nc">&nbsp;            command1.executeUpdate();</b>
+<b class="nc">&nbsp;            command1.close();</b>
+&nbsp;
+<b class="nc">&nbsp;            String sql2 = &quot;&quot;&quot;</b>
+&nbsp;UPDATE address 
+&nbsp;SET country = ?, state = ?, cep = ? 
+&nbsp;WHERE id = ?;&quot;&quot;&quot;;
+<b class="nc">&nbsp;            PreparedStatement command2 = db.prepareStatement(sql2);</b>
+<b class="nc">&nbsp;            command2.setString(1, person.address.country);</b>
+<b class="nc">&nbsp;            command2.setString(2, person.address.state);</b>
+<b class="nc">&nbsp;            command2.setString(3, person.address.cep);</b>
+<b class="nc">&nbsp;            command2.setInt(4, person.address.getId());</b>
+<b class="nc">&nbsp;            command2.executeUpdate();</b>
+<b class="nc">&nbsp;            command2.close();</b>
+&nbsp;
+<b class="nc">&nbsp;            skillService.deleteSkillByPerson(person.id)</b>
+<b class="nc">&nbsp;            skillService.addSkillByPerson(person.id, person.skills)</b>
+&nbsp;
+<b class="nc">&nbsp;            String sql3 = &quot;&quot;&quot;</b>
+&nbsp;UPDATE legalpeople 
+&nbsp;SET cnpj = ? 
+&nbsp;WHERE &quot;idPerson&quot; = ? ;&quot;&quot;&quot;;
+<b class="nc">&nbsp;            PreparedStatement command3 = db.prepareStatement(sql3);</b>
+<b class="nc">&nbsp;            command3.setString(1, person.cnpj);</b>
+<b class="nc">&nbsp;            command3.setInt(2, person.id);</b>
+<b class="nc">&nbsp;            command3.execute();</b>
+<b class="nc">&nbsp;            command3.close();</b>
+&nbsp;        } catch (SQLException exception_sql) {
+<b class="nc">&nbsp;            exception_sql.printStackTrace();</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    void addUser(LegalPersonEntity person) {
+&nbsp;        try {
+<b class="nc">&nbsp;            Integer idAddress = -1</b>
+<b class="nc">&nbsp;            Integer idPerson = -1</b>
+<b class="nc">&nbsp;            String sql1 = &quot;&quot;&quot;INSERT INTO public.address (&quot;country&quot;, &quot;state&quot;, &quot;cep&quot;) </b>
+&nbsp;            VALUES (?, ?, ?) RETURNING id;&quot;&quot;&quot;;
+<b class="nc">&nbsp;            PreparedStatement command1 = db.prepareStatement(sql1)</b>
+<b class="nc">&nbsp;            command1.setString(1, person.address.getCountry());</b>
+<b class="nc">&nbsp;            command1.setString(2, person.address.getState());</b>
+<b class="nc">&nbsp;            command1.setString(3, person.address.getCep());</b>
+<b class="nc">&nbsp;            ResultSet result1 = command1.executeQuery();</b>
+<b class="nc">&nbsp;            if (result1 != null &amp;&amp; result1.next()) {</b>
+<b class="nc">&nbsp;                idAddress = result1.getInt(&quot;id&quot;)</b>
+&nbsp;            }
+<b class="nc">&nbsp;            command1.close();</b>
+<b class="nc">&nbsp;            String sql2 = &quot;&quot;&quot;INSERT INTO people </b>
+&nbsp;(email, name, description, address, password) 
+&nbsp;                    VALUES (?, ?, ?, ?, ?) RETURNING id;&quot;&quot;&quot;;
+<b class="nc">&nbsp;            PreparedStatement command2 = db.prepareStatement(sql2)</b>
+<b class="nc">&nbsp;            command2.setString(1, person.getEmail());</b>
+<b class="nc">&nbsp;            command2.setString(2, person.getName());</b>
+<b class="nc">&nbsp;            command2.setString(3, person.getDescription());</b>
+<b class="nc">&nbsp;            command2.setInt(4, idAddress);</b>
+<b class="nc">&nbsp;            command2.setString(5, person.getPassword());</b>
+<b class="nc">&nbsp;            ResultSet result2 = command2.executeQuery();</b>
+<b class="nc">&nbsp;            if (result2 != null &amp;&amp; result2.next()) {</b>
+<b class="nc">&nbsp;                idPerson = result2.getInt(&quot;id&quot;)</b>
+&nbsp;            }
+<b class="nc">&nbsp;            command2.close();</b>
+<b class="nc">&nbsp;            skillService.addSkillByPerson(idPerson,person.skills)</b>
+<b class="nc">&nbsp;            String sql3 = &quot;&quot;&quot;INSERT INTO legalpeople (&quot;idPerson&quot;, &quot;cnpj&quot;) </b>
+&nbsp;                    VALUES (?, ?);&quot;&quot;&quot;;
+<b class="nc">&nbsp;            PreparedStatement command3 = db.prepareStatement(sql3)</b>
+<b class="nc">&nbsp;            command3.setInt(1, idPerson);</b>
+<b class="nc">&nbsp;            command3.setString(2, person.getCnpj());</b>
+<b class="nc">&nbsp;            command3.execute()</b>
+<b class="nc">&nbsp;            command3.close();</b>
+&nbsp;
+&nbsp;        } catch (SQLException exceção_sql) {
+<b class="nc">&nbsp;            exceção_sql.printStackTrace();</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;    def deleteById(LegalPersonEntity person) {
+&nbsp;        try {
+<b class="nc">&nbsp;            skillService.deleteSkillByPerson(person.id)</b>
+&nbsp;
+<b class="nc">&nbsp;            String sql1 = &quot;&quot;&quot;DELETE FROM legalpeople WHERE &quot;idPerson&quot; = ?;&quot;&quot;&quot;</b>
+<b class="nc">&nbsp;            PreparedStatement command1 = db.prepareStatement(sql1)</b>
+<b class="nc">&nbsp;            command1.setInt(1, person.id)</b>
+<b class="nc">&nbsp;            command1.executeUpdate()</b>
+<b class="nc">&nbsp;            command1.close()</b>
+&nbsp;
+<b class="nc">&nbsp;            String sql2 = &quot;&quot;&quot;DELETE FROM people WHERE id = ?;&quot;&quot;&quot;</b>
+<b class="nc">&nbsp;            PreparedStatement command2 = db.prepareStatement(sql2)</b>
+<b class="nc">&nbsp;            command2.setInt(1, person.id)</b>
+<b class="nc">&nbsp;            command2.executeUpdate()</b>
+<b class="nc">&nbsp;            command2.close()</b>
+&nbsp;
+<b class="nc">&nbsp;            String sql3 = &quot;&quot;&quot;DELETE FROM address WHERE id = ?;&quot;&quot;&quot;</b>
+<b class="nc">&nbsp;            PreparedStatement command3 = db.prepareStatement(sql3)</b>
+<b class="nc">&nbsp;            command3.setInt(1, person.address.getId())</b>
+<b class="nc">&nbsp;            command3.execute()</b>
+<b class="nc">&nbsp;            command3.close()</b>
+&nbsp;        } catch (SQLException exception_sql) {
+<b class="nc">&nbsp;            exception_sql.printStackTrace()</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-04-24 22:26</div>
+</div>
+</body>
+</html>

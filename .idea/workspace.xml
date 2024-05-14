@@ -4,57 +4,208 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d787a77f-7c8b-43f3-b593-f7d84e8ebda1" name="Changes" comment=":recycle: refactor: solid&#10;redução dos tamanhos das funções&#10;inserção da arquitetura DAO">
-      <change afterPath="$PROJECT_DIR$/src/main/groovy/org/example/controllers/Controller.groovy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/groovy/org/example/controllers/JobController.groovy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/groovy/org/example/controllers/LoginController.groovy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/groovy/org/example/controllers/NaturalPersonController.groovy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/groovy/org/example/dao/JobDao.groovy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/groovy/org/example/dao/LegalPersonDao.groovy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/groovy/org/example/dao/LoginDao.groovy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/groovy/org/example/dao/impl/JobDaoImpl.groovy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/groovy/org/example/dao/impl/LegalPersonDaoImpl.groovy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/groovy/org/example/dto/AddressDto.groovy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/groovy/org/example/dto/JobDto.groovy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/groovy/org/example/dto/LoginDto.groovy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/groovy/org/example/factorys/ControllerFactory.groovy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/groovy/org/example/factorys/DaoFactory.groovy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/groovy/org/example/factorys/ServiceFactory.groovy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/groovy/org/example/server/Server.groovy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/groovy/org/example/services/LoginService.groovy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/groovy/org/example/services/impl/LegalPersonServiceImpl.groovy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/groovy/org/example/services/impl/LoginServiceImpl.groovy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/groovy/org/example/services/impl/NaturalPersonServiceImpl.groovy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/groovy/org/example/services/impl/SkillServiceImpl.groovy" afterDir="false" />
+    <list default="true" id="d787a77f-7c8b-43f3-b593-f7d84e8ebda1" name="Changes" comment=":sparkles: feat: add front">
+      <change afterPath="$PROJECT_DIR$/front/.eslintrc.cjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/public/vite.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/src/App.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/src/App.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/src/assets/react.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/src/components/skill.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/src/components/skills.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/src/context/legalPerson.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/src/context/naturalPerson.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/src/entity/Address.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/src/entity/LegalPerson.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/src/entity/NaturalPerson.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/src/entity/Person.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/src/index.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/src/interfaces/address.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/src/interfaces/person.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/src/main.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/src/sections/createLegalPerson/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/src/sections/createLegalPerson/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/src/sections/createNaturalPerson/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/src/sections/createNaturalPerson/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/src/sections/listLegalPeople/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/src/sections/listNaturalPeople/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/src/sections/loginNaturalPerson/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/src/sections/loginNaturalPerson/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/src/vite-env.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/tsconfig.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/tsconfig.node.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/vite.config.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/css/coverage.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/css/idea.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/img/arrowDown.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/img/arrowUp.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/index_SORT_BY_BLOCK.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/index_SORT_BY_BLOCK_DESC.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/index_SORT_BY_CLASS.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/index_SORT_BY_CLASS_DESC.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/index_SORT_BY_LINE.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/index_SORT_BY_LINE_DESC.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/index_SORT_BY_METHOD.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/index_SORT_BY_METHOD_DESC.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/index_SORT_BY_NAME_DESC.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/js/highlight.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/js/highlightjs-line-numbers.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-1/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-1/index_SORT_BY_BLOCK.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-1/index_SORT_BY_BLOCK_DESC.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-1/index_SORT_BY_CLASS.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-1/index_SORT_BY_CLASS_DESC.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-1/index_SORT_BY_LINE.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-1/index_SORT_BY_LINE_DESC.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-1/index_SORT_BY_METHOD.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-1/index_SORT_BY_METHOD_DESC.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-1/index_SORT_BY_NAME_DESC.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-1/sources/source-1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-2/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-2/index_SORT_BY_BLOCK.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-2/index_SORT_BY_BLOCK_DESC.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-2/index_SORT_BY_CLASS.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-2/index_SORT_BY_CLASS_DESC.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-2/index_SORT_BY_LINE.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-2/index_SORT_BY_LINE_DESC.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-2/index_SORT_BY_METHOD.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-2/index_SORT_BY_METHOD_DESC.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-2/index_SORT_BY_NAME_DESC.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-2/sources/source-1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-3/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-3/index_SORT_BY_BLOCK.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-3/index_SORT_BY_BLOCK_DESC.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-3/index_SORT_BY_CLASS.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-3/index_SORT_BY_CLASS_DESC.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-3/index_SORT_BY_LINE.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-3/index_SORT_BY_LINE_DESC.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-3/index_SORT_BY_METHOD.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-3/index_SORT_BY_METHOD_DESC.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-3/index_SORT_BY_NAME_DESC.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-3/sources/source-1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-3/sources/source-2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-3/sources/source-3.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-3/sources/source-4.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-3/sources/source-5.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-3/sources/source-6.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-4/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-4/index_SORT_BY_BLOCK.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-4/index_SORT_BY_BLOCK_DESC.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-4/index_SORT_BY_CLASS.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-4/index_SORT_BY_CLASS_DESC.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-4/index_SORT_BY_LINE.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-4/index_SORT_BY_LINE_DESC.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-4/index_SORT_BY_METHOD.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-4/index_SORT_BY_METHOD_DESC.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-4/index_SORT_BY_NAME_DESC.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-4/sources/source-1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-4/sources/source-2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-4/sources/source-3.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-4/sources/source-4.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-5/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-5/index_SORT_BY_BLOCK.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-5/index_SORT_BY_BLOCK_DESC.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-5/index_SORT_BY_CLASS.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-5/index_SORT_BY_CLASS_DESC.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-5/index_SORT_BY_LINE.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-5/index_SORT_BY_LINE_DESC.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-5/index_SORT_BY_METHOD.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-5/index_SORT_BY_METHOD_DESC.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-5/index_SORT_BY_NAME_DESC.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-5/sources/source-1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-5/sources/source-2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-5/sources/source-3.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-5/sources/source-4.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-5/sources/source-5.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-6/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-6/index_SORT_BY_BLOCK.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-6/index_SORT_BY_BLOCK_DESC.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-6/index_SORT_BY_CLASS.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-6/index_SORT_BY_CLASS_DESC.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-6/index_SORT_BY_LINE.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-6/index_SORT_BY_LINE_DESC.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-6/index_SORT_BY_METHOD.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-6/index_SORT_BY_METHOD_DESC.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-6/index_SORT_BY_NAME_DESC.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlReport/ns-6/sources/source-1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/groovy-5.0.0-alpha-1-sources.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/groovy-5.0.0-alpha-1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/groovy-ant-5.0.0-alpha-1-sources.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/groovy-ant-5.0.0-alpha-1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/groovy-astbuilder-5.0.0-alpha-1-sources.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/groovy-astbuilder-5.0.0-alpha-1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/groovy-cli-commons-5.0.0-alpha-1-sources.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/groovy-cli-commons-5.0.0-alpha-1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/groovy-cli-picocli-5.0.0-alpha-1-sources.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/groovy-cli-picocli-5.0.0-alpha-1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/groovy-console-5.0.0-alpha-1-sources.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/groovy-console-5.0.0-alpha-1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/groovy-contracts-5.0.0-alpha-1-sources.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/groovy-contracts-5.0.0-alpha-1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/groovy-datetime-5.0.0-alpha-1-sources.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/groovy-datetime-5.0.0-alpha-1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/groovy-dateutil-5.0.0-alpha-1-sources.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/groovy-dateutil-5.0.0-alpha-1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/groovy-docgenerator-5.0.0-alpha-1-sources.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/groovy-docgenerator-5.0.0-alpha-1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/groovy-ginq-5.0.0-alpha-1-sources.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/groovy-ginq-5.0.0-alpha-1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/groovy-groovydoc-5.0.0-alpha-1-sources.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/groovy-groovydoc-5.0.0-alpha-1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/groovy-groovysh-5.0.0-alpha-1-sources.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/groovy-groovysh-5.0.0-alpha-1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/groovy-jmx-5.0.0-alpha-1-sources.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/groovy-jmx-5.0.0-alpha-1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/groovy-json-5.0.0-alpha-1-sources.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/groovy-json-5.0.0-alpha-1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/groovy-jsr223-5.0.0-alpha-1-sources.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/groovy-jsr223-5.0.0-alpha-1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/groovy-macro-5.0.0-alpha-1-sources.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/groovy-macro-5.0.0-alpha-1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/groovy-macro-library-5.0.0-alpha-1-sources.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/groovy-macro-library-5.0.0-alpha-1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/groovy-nio-5.0.0-alpha-1-sources.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/groovy-nio-5.0.0-alpha-1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/groovy-servlet-5.0.0-alpha-1-sources.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/groovy-servlet-5.0.0-alpha-1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/groovy-sql-5.0.0-alpha-1-sources.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/groovy-sql-5.0.0-alpha-1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/groovy-swing-5.0.0-alpha-1-sources.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/groovy-swing-5.0.0-alpha-1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/groovy-templates-5.0.0-alpha-1-sources.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/groovy-templates-5.0.0-alpha-1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/groovy-test-5.0.0-alpha-1-sources.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/groovy-test-5.0.0-alpha-1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/groovy-test-junit5-5.0.0-alpha-1-sources.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/groovy-test-junit5-5.0.0-alpha-1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/groovy-testng-5.0.0-alpha-1-sources.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/groovy-testng-5.0.0-alpha-1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/groovy-toml-5.0.0-alpha-1-sources.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/groovy-toml-5.0.0-alpha-1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/groovy-typecheckers-5.0.0-alpha-1-sources.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/groovy-typecheckers-5.0.0-alpha-1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/groovy-xml-5.0.0-alpha-1-sources.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/groovy-xml-5.0.0-alpha-1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/groovy/org/example/controllers/LegalPersonController.groovy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/groovy/org/example/dto/LegalPersonDto.groovy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/groovy/org/example/dto/NaturalPersonDto.groovy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/groovy/org/example/services/impl/JobsServiceImpl.groovy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/groovy/org/example/Main.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/org/example/Main.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/groovy/org/example/dao/AddressDao.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/org/example/dao/AddressDao.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/groovy/org/example/dao/NaturalPersonDao.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/org/example/dao/NaturalPersonDao.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/groovy/org/example/dao/PersonDao.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/org/example/dao/PersonDao.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/groovy/org/example/dao/SkillDao.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/org/example/dao/SkillDao.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/groovy/org/example/dao/impl/AddressDaoImpl.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/org/example/dao/impl/AddressDaoImpl.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/groovy/org/example/controllers/Controller.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/org/example/controllers/Controller.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/groovy/org/example/controllers/NaturalPersonController.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/org/example/controllers/NaturalPersonController.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/groovy/org/example/dao/impl/LegalPersonDaoImpl.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/org/example/dao/impl/LegalPersonDaoImpl.groovy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/groovy/org/example/dao/impl/NaturalPersonDaoImpl.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/org/example/dao/impl/NaturalPersonDaoImpl.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/groovy/org/example/dao/impl/PersonDaoImpl.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/org/example/dao/impl/PersonDaoImpl.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/groovy/org/example/dao/impl/SkillDaoImpl.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/org/example/dao/impl/SkillDaoImpl.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/groovy/org/example/entity/JobEntity.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/org/example/entity/JobEntity.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/groovy/org/example/entity/LegalPersonEntity.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/org/example/entity/LegalPersonEntity.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/groovy/org/example/entity/PersonEntity.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/org/example/entity/PersonEntity.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/groovy/org/example/dto/AddressDto.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/org/example/dto/AddressDto.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/groovy/org/example/factorys/ControllerFactory.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/org/example/factorys/ControllerFactory.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/groovy/org/example/factorys/ServiceFactory.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/org/example/factorys/ServiceFactory.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/groovy/org/example/server/Server.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/org/example/server/Server.groovy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/groovy/org/example/services/JobsService.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/org/example/services/JobsService.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/groovy/org/example/services/LegalPersonService.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/org/example/services/LegalPersonService.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/groovy/org/example/services/NaturalPersonService.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/org/example/services/NaturalPersonService.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/groovy/org/example/services/SkillService.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/org/example/services/SkillService.groovy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/groovy/org/example/ui/JobsUI.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/org/example/ui/JobsUI.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/groovy/org/example/ui/LegalPersonUI.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/org/example/ui/LegalPersonUI.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/groovy/org/example/ui/NaturalPersonUI.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/org/example/ui/NaturalPersonUI.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/groovy/org/example/ui/SkillsUI.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/org/example/ui/SkillsUI.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/groovy/config/DatabaseTest.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/groovy/config/DatabaseTest.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/groovy/services/JobsServiceTest.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/groovy/services/JobsServiceTest.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/groovy/services/LegalPersonServiceTest.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/groovy/services/LegalPersonServiceTest.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/groovy/services/NaturalPersonServiceTest.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/groovy/services/NaturalPersonServiceTest.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/groovy/services/SkillServiceTest.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/groovy/services/SkillServiceTest.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/groovy/utils/DBTest.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/groovy/utils/DBTest.groovy" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,62 +286,62 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Gradle.Build ZG-HERO_Project__K1-T9__Banco_de_Dados_PostgreSQL.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.DatabaseTest.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.DatabaseTest.testConnectionClosed.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.DatabaseTest.testConnectionIsClosed.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.DatabaseTest.testConnectionIsValid.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.DatabaseTest.testConnectionNotNull.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.JobsServiceTest.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.JobsServiceTest.should add a job.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.JobsServiceTest.should get a job by id.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.JobsServiceTest.should upgrade one job per id.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.LegalPersonServiceTest.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.LegalPersonServiceTest.should add and retrieve a legal person.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.LegalPersonServiceTest.should delete a legal person.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.LegalPersonServiceTest.should update a legal person.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.NaturalPersonServiceTest.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.NaturalPersonServiceTest.should add and retrieve a natural person.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.NaturalPersonServiceTest.should delete a natural person.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.NaturalPersonServiceTest.should update a natural person.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.SkillServiceSpec.should add a skill.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.SkillServiceTest.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.SkillServiceTest.should add a skill and link to a person.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.SkillServiceTest.should add a skill successfully.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.SkillServiceTest.should add a skill.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.SkillServiceTest.should delete a skill and its links to people.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.SkillServiceTest.should get a skill by id.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.SkillServiceTest.should list skills from the database.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.SkillServiceTest.should list skills.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.SkillServiceTest.should upgrade one skill per id.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.SkillServiceTest.test addSkill method.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.SkillServiceTest.test listSkills method.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.ZG-HERO_Project__K1-T9__Banco_de_Dados_PostgreSQL [:Main.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.ZG-HERO_Project__K1-T9__Banco_de_Dados_PostgreSQL [run].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.ZG-HERO_Project__K1-T9__Banco_de_Dados_PostgreSQL [test].executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.LegalPersonServiceTest,should add and retrieve a legal person and 2 more.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/alvaro/Área de Trabalho/teagabank-backend-web&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.Build ZG-HERO_Project__K1-T9__Banco_de_Dados_PostgreSQL.executor": "Run",
+    "Gradle.DatabaseTest.executor": "Run",
+    "Gradle.DatabaseTest.testConnectionClosed.executor": "Run",
+    "Gradle.DatabaseTest.testConnectionIsClosed.executor": "Run",
+    "Gradle.DatabaseTest.testConnectionIsValid.executor": "Run",
+    "Gradle.DatabaseTest.testConnectionNotNull.executor": "Run",
+    "Gradle.JobsServiceTest.executor": "Run",
+    "Gradle.JobsServiceTest.should add a job.executor": "Run",
+    "Gradle.JobsServiceTest.should get a job by id.executor": "Run",
+    "Gradle.JobsServiceTest.should upgrade one job per id.executor": "Run",
+    "Gradle.LegalPersonServiceTest.executor": "Run",
+    "Gradle.LegalPersonServiceTest.should add and retrieve a legal person.executor": "Run",
+    "Gradle.LegalPersonServiceTest.should delete a legal person.executor": "Run",
+    "Gradle.LegalPersonServiceTest.should update a legal person.executor": "Run",
+    "Gradle.NaturalPersonServiceTest.executor": "Run",
+    "Gradle.NaturalPersonServiceTest.should add and retrieve a natural person.executor": "Run",
+    "Gradle.NaturalPersonServiceTest.should delete a natural person.executor": "Run",
+    "Gradle.NaturalPersonServiceTest.should update a natural person.executor": "Run",
+    "Gradle.SkillServiceSpec.should add a skill.executor": "Run",
+    "Gradle.SkillServiceTest.executor": "Run",
+    "Gradle.SkillServiceTest.should add a skill and link to a person.executor": "Run",
+    "Gradle.SkillServiceTest.should add a skill successfully.executor": "Run",
+    "Gradle.SkillServiceTest.should add a skill.executor": "Run",
+    "Gradle.SkillServiceTest.should delete a skill and its links to people.executor": "Run",
+    "Gradle.SkillServiceTest.should get a skill by id.executor": "Run",
+    "Gradle.SkillServiceTest.should list skills from the database.executor": "Run",
+    "Gradle.SkillServiceTest.should list skills.executor": "Run",
+    "Gradle.SkillServiceTest.should upgrade one skill per id.executor": "Run",
+    "Gradle.SkillServiceTest.test addSkill method.executor": "Run",
+    "Gradle.SkillServiceTest.test listSkills method.executor": "Run",
+    "Gradle.ZG-HERO_Project__K1-T9__Banco_de_Dados_PostgreSQL [:Main.main()].executor": "Debug",
+    "Gradle.ZG-HERO_Project__K1-T9__Banco_de_Dados_PostgreSQL [run].executor": "Run",
+    "Gradle.ZG-HERO_Project__K1-T9__Banco_de_Dados_PostgreSQL [test].executor": "Run",
+    "JUnit.LegalPersonServiceTest,should add and retrieve a legal person and 2 more.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/alvaro/Área de Trabalho/Desafio-Dojo3-ACZG5-G1",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/groovy/org/example" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="org.example.dto" />
-      <recent name="org.example.controllers" />
       <recent name="org.example.services.impl" />
+      <recent name="org.example.controllers" />
       <recent name="org.example.factorys" />
       <recent name="org.example.dao" />
     </key>
@@ -356,7 +507,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714447169217</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary=":recycle: refactor: padrões de projeto">
+      <option name="closed" value="true" />
+      <created>1714927637299</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1714927637299</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -381,7 +540,9 @@
     <MESSAGE value=":recycle: refactor: clean code&#10;adição dos principios clean code&#10;finalização dos tests Services" />
     <MESSAGE value=":books: docs: info de refactor" />
     <MESSAGE value=":recycle: refactor: solid&#10;redução dos tamanhos das funções&#10;inserção da arquitetura DAO" />
-    <option name="LAST_COMMIT_MESSAGE" value=":recycle: refactor: solid&#10;redução dos tamanhos das funções&#10;inserção da arquitetura DAO" />
+    <MESSAGE value=":recycle: refactor: padrões de projeto" />
+    <MESSAGE value=":sparkles: feat: add front" />
+    <option name="LAST_COMMIT_MESSAGE" value=":sparkles: feat: add front" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/ZG_HERO_Project__K1_T9__Banco_de_Dados_PostgreSQL$SkillServiceTest.ic" NAME="SkillServiceTest Coverage Results" MODIFIED="1714011954594" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />

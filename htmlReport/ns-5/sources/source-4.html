@@ -1,0 +1,203 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > SkillsUI</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">org.example.ui</a>
+</div>
+
+<h1>Coverage Summary for Class: SkillsUI (org.example.ui)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">SkillsUI</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/44)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package org.example.ui
+&nbsp;
+&nbsp;import org.example.config.Database
+&nbsp;import org.example.entity.SkillEntity
+&nbsp;import org.example.services.SkillService
+&nbsp;
+&nbsp;class SkillsUI {
+<b class="nc">&nbsp;    private static SkillService skillService = new SkillService(Database.conn)</b>
+&nbsp;
+&nbsp;    void read() {
+<b class="nc">&nbsp;        println &quot;&quot;&quot;</b>
+&nbsp;@@Lista de Competencias@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+<b class="nc">&nbsp;${skillService.listSkills().join(&quot;\n&quot;)}</b>
+&nbsp;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@&quot;&quot;&quot;
+&nbsp;    }
+&nbsp;
+&nbsp;    void create(BufferedReader br) {
+<b class="nc">&nbsp;        print &quot;Titulo da Competencia:&quot;</b>
+<b class="nc">&nbsp;        String title = readInput(br, &quot;Titulo da Competencia&quot;)</b>
+<b class="nc">&nbsp;        print &quot;Descrição da Competencia:&quot;</b>
+<b class="nc">&nbsp;        String description = readInput(br, &quot;Descrição da Competencia&quot;)</b>
+<b class="nc">&nbsp;        skillService.addSkill(title, description)</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    void update(BufferedReader br) {
+<b class="nc">&nbsp;        this.read()</b>
+<b class="nc">&nbsp;        print &quot;Informe o id da Skill:&quot;</b>
+<b class="nc">&nbsp;        Integer id = readIntegerInput(br, &quot;id da Skill&quot;)</b>
+<b class="nc">&nbsp;        SkillEntity skill = skillService.oneById(id)</b>
+<b class="nc">&nbsp;        if(!skill){</b>
+<b class="nc">&nbsp;            println &quot;$id NÃO EXISTE&quot;</b>
+&nbsp;        }else{
+<b class="nc">&nbsp;            skill = updateSkillDetails(br, skill)</b>
+<b class="nc">&nbsp;            skillService.updateById(skill)</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    void delete(BufferedReader br) {
+<b class="nc">&nbsp;        this.read()</b>
+<b class="nc">&nbsp;        print &quot;Informe o id da Skill:&quot;</b>
+<b class="nc">&nbsp;        Integer id = readIntegerInput(br, &quot;id da Skill&quot;)</b>
+<b class="nc">&nbsp;        SkillEntity skill = skillService.oneById(id)</b>
+<b class="nc">&nbsp;        if(!skill){</b>
+<b class="nc">&nbsp;            println &quot;$id NÃO EXISTE&quot;</b>
+&nbsp;        }else{
+<b class="nc">&nbsp;            skillService.deleteById(id)</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    private String readInput(BufferedReader br, String prompt) {
+<b class="nc">&nbsp;        String input</b>
+<b class="nc">&nbsp;        while (true) {</b>
+<b class="nc">&nbsp;            print &quot;$prompt: &quot;</b>
+<b class="nc">&nbsp;            input = br.readLine()</b>
+<b class="nc">&nbsp;            if (!input.isEmpty()) {</b>
+&nbsp;                break
+&nbsp;            }
+<b class="nc">&nbsp;            println &quot;Campo obrigatório, por favor, preencha.&quot;</b>
+&nbsp;        }
+<b class="nc">&nbsp;        input</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private Integer readIntegerInput(BufferedReader br, String prompt) {
+<b class="nc">&nbsp;        Integer input</b>
+<b class="nc">&nbsp;        while (true) {</b>
+<b class="nc">&nbsp;            print &quot;$prompt: &quot;</b>
+&nbsp;            try {
+<b class="nc">&nbsp;                input = Integer.parseInt(br.readLine())</b>
+<b class="nc">&nbsp;                break</b>
+&nbsp;            } catch (NumberFormatException e) {
+<b class="nc">&nbsp;                println &quot;Valor inválido, por favor, insira um número inteiro.&quot;</b>
+&nbsp;            }
+&nbsp;        }
+<b class="nc">&nbsp;        input</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private SkillEntity updateSkillDetails(BufferedReader br, SkillEntity skill) {
+<b class="nc">&nbsp;        print &quot;Titulo da Competencia(${skill.title}):&quot;</b>
+<b class="nc">&nbsp;        String title = readInput(br, &quot;Titulo da Competencia&quot;)</b>
+<b class="nc">&nbsp;        skill.setTitle(title)</b>
+&nbsp;
+<b class="nc">&nbsp;        print &quot;Descrição da Competencia(${skill.description}):&quot;</b>
+<b class="nc">&nbsp;        String description = readInput(br, &quot;Descrição da Competencia&quot;)</b>
+<b class="nc">&nbsp;        skill.setDescription(description)</b>
+<b class="nc">&nbsp;        skill</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-04-24 22:26</div>
+</div>
+</body>
+</html>

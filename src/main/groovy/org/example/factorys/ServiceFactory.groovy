@@ -11,6 +11,8 @@ import org.example.services.LegalPersonService
 import org.example.services.LoginService
 import org.example.services.NaturalPersonService
 import org.example.services.SkillService
+import org.example.services.impl.JobsServiceImpl
+import org.example.services.impl.LegalPersonServiceImpl
 import org.example.services.impl.LoginServiceImpl
 import org.example.services.impl.NaturalPersonServiceImpl
 import org.example.services.impl.SkillServiceImpl
@@ -30,7 +32,7 @@ class ServiceFactory {
         LegalPersonDao legalPersonDao = DaoFactory.createLegalPerson()
         AddressDao addressDao = DaoFactory.createAddress()
         PersonDao personDao = DaoFactory.createPerson()
-        return new NaturalPersonServiceImpl(legalPersonDao,addressDao,personDao)
+        return new LegalPersonServiceImpl(legalPersonDao,addressDao,personDao)
     }
     static SkillService createSkill() {
         SkillDao skillDao = DaoFactory.createSkill()
@@ -40,6 +42,6 @@ class ServiceFactory {
         JobDao jobDao = DaoFactory.createJob()
         LegalPersonDao legalPersonDao = DaoFactory.createLegalPerson()
         AddressDao addressDao = DaoFactory.createAddress()
-        return new JobsService(jobDao,legalPersonDao,addressDao)
+        return new JobsServiceImpl(jobDao,legalPersonDao,addressDao)
     }
 }

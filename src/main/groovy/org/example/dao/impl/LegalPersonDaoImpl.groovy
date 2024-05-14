@@ -65,7 +65,7 @@ ON ad.id = p.address;"""
         return newPerson
     }
     private String sqlCreate(){
-        return "INSERT INTO legalpeople (idPerson, cnpj) VALUES (?, ?);"
+        return "INSERT INTO legalpeople (\"idPerson\", cnpj) VALUES (?, ?);"
     }
 
     @Override
