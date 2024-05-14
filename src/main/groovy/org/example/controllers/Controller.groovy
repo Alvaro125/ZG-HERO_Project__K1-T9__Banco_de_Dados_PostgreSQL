@@ -11,6 +11,17 @@ abstract class Controller {
     }
 
     void handleRequest(HttpExchange request) {
+        request.getResponseHeaders().add("Access-Control-Allow-Origin", "*");
+        request.getResponseHeaders().add("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
+        request.getResponseHeaders().add("Access-Control-Allow-Headers", "*");
+        request.getResponseHeaders().add("Access-Control-Allow-Credentials", "true");
+        request.getResponseHeaders().add("Access-Control-Allow-Credentials-Header", "*");
+
+        if (request.getRequestMethod().equalsIgnoreCase("OPTIONS")) {
+            request.sendResponseHeaders(200, -1);
+            return;
+        }
+
         String method = request.getRequestMethod()
 
         if (method == "GET") {
