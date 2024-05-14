@@ -49,7 +49,6 @@ Certifique-se de que essas dependências estejam disponíveis no classpath ao ex
 - 3# ♻️ refactor: desing pattern
 
   - Factory Method em `controller`,`services` e `DAO`
-  - Facade em `Services` e `Controller`
   - Padrão de Projeto DAO e DTO(Para possivel remoção do DAO para Entity Repository)
 
 >Futaramente irei aperfeiçoar os testes
